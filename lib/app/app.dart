@@ -6,11 +6,14 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../ui/views/home/home_view.dart';
+import '../ui/views/recents/recents_view.dart';
+import '../ui/views/main/main_view.dart';
 
 @StackedApp(
 routes: [
-/// set [initial: true] for the home directory.
-  CupertinoRoute(page: HomeView, initial: true),
+  CupertinoRoute(page: MainView, initial: true),
+  CupertinoRoute(page: HomeView),
+  CupertinoRoute(page: RecentsView),
 ],
 dependencies: [
   LazySingleton(classType: NavigationService),

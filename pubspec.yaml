@@ -9,14 +9,16 @@ environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
+  animated_text_kit: ^4.2.1
   cupertino_icons: ^1.0.2
+  curved_navigation_bar: ^1.0.2
   dio: ^4.0.4
   flutter:
     sdk: flutter
-  flutter_screenutil: ^5.1.1
   hive: ^2.0.5
   hive_flutter: ^1.1.0
   json_annotation: ^4.4.0
+  shared_preferences: ^2.0.12
   stacked: ^2.2.8
   stacked_services: ^0.8.16
   stacked_themes: ^0.3.8+1

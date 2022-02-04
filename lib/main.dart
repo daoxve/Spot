@@ -1,9 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'core/utils/exports.dart';
+import 'styles/themes.dart' as _themes;
 
-import './ui/views/home/home_view.dart';
+import './ui/views/main/main_view.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupLocator();
+  await ThemeManager.initialise();
+  await Hive.initFlutter();
+
   runApp(const App());
 }
 
@@ -12,14 +17,21 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      builder: () => MaterialApp(
+    return ThemeBuilder(
+      statusBarColorBuilder: (theme) => theme!.backgroundColor,
+      navigationBarColorBuilder: (theme) => theme!.backgroundColor,
+      defaultThemeMode: ThemeMode.light,
+      darkTheme: _themes.darkTheme,
+      lightTheme: _themes.lightTheme,
+      builder: (context, regularTheme, darkTheme, themeMode) => MaterialApp(
         title: 'Spot',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const HomeView(),
+        theme: regularTheme,
+        darkTheme: darkTheme,
+        themeMode: themeMode,
+        debugShowCheckedModeBanner: false,
+        navigatorKey: StackedService.navigatorKey,
+        onGenerateRoute: StackedRouter().onGenerateRoute,
+        home: const MainView(),
       ),
     );
   }

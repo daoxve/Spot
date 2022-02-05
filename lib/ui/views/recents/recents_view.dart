@@ -1,6 +1,6 @@
 import 'package:spot/core/utils/exports.dart';
 
-import 'package:spot/ui/views/home/home_viewmodel.dart';
+import 'recents_viewmodel.dart';
 
 class RecentsView extends StatelessWidget {
   const RecentsView({Key? key}) : super(key: key);
@@ -10,8 +10,9 @@ class RecentsView extends StatelessWidget {
     var theme = Theme.of(context);
     final textTheme = theme.textTheme;
 
-    return ViewModelBuilder<HomeViewModel>.reactive(
-      viewModelBuilder: () => HomeViewModel(),
+    return ViewModelBuilder<RecentsViewModel>.reactive(
+      onModelReady: (model) => model.initHiveBox(),
+      viewModelBuilder: () => RecentsViewModel(),
       // onDispose: (model) => model.disposeAll(),
       builder: (context, model, child) => Scaffold(
         backgroundColor: theme.backgroundColor,
@@ -22,26 +23,49 @@ class RecentsView extends StatelessWidget {
           ),
           centerTitle: false,
           elevation: 0,
+          actions: [
+            IconButton(
+              onPressed: () => model.deleteAllItems(),
+              icon: const Icon(
+                Icons.delete,
+                size: 25,
+              ),
+              color: Colors.red,
+            ),
+          ],
           backgroundColor: theme.backgroundColor,
         ),
-        body: ListView.separated(
-          itemCount: model.recentSearches.length,
-          separatorBuilder: (BuildContext context, int index) {
-            return const SizedBox(height: 10);
-          },
-          itemBuilder: (BuildContext context, int index) {
-            print('Building');
-            print(model.recentSearches);
-            print(model.recentSearches.length);
-            return ListTile(
-              title: Text(
-                model.recentSearches[index],
-                style: const TextStyle(
-                  color: Colors.green,
-                  fontSize: 25,
-                ),
-              ),
-            );
+        body: ValueListenableBuilder(
+          valueListenable: model.box.listenable(),
+          builder: (context, Box box, widget) {
+            return box.isEmpty
+                ? const Center(
+                    child: Text('Empty'),
+                  )
+                : ListView.separated(
+                    itemCount: box.length,
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const SizedBox(height: 10);
+                    },
+                    itemBuilder: (BuildContext context, int index) {
+                      var currentBox = box;
+                      var searchData = currentBox.getAt(index);
+
+                      print('Building');
+                      print(currentBox);
+                      print(searchData);
+
+                      return ListTile(
+                        title: Text(
+                          searchData.toString(),
+                          style: const TextStyle(
+                            color: Colors.blue,
+                            fontSize: 25,
+                          ),
+                        ),
+                      );
+                    },
+                  );
           },
         ),
       ),

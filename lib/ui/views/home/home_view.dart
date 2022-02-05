@@ -44,23 +44,14 @@ class HomeView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Flexible(
+                  const Flexible(
                     flex: 1,
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        TypewriterAnimatedText(
-                          'Add a phone number:',
-                          textStyle: const TextStyle(
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          speed: const Duration(milliseconds: 100),
-                          cursor: ' |',
-                          curve: Curves.elasticInOut,
-                        ),
-                      ],
-                      isRepeatingAnimation: false,
-                      pause: const Duration(milliseconds: 300),
+                    child: Text(
+                      'Add a phone number:',
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 14.0),
@@ -69,6 +60,7 @@ class HomeView extends StatelessWidget {
                     child: TextFormField(
                       controller: model.textController,
                       onSaved: (value) {},
+                      onFieldSubmitted: (value) => model.saveSearch(context),
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -76,7 +68,7 @@ class HomeView extends StatelessWidget {
                             size: 25,
                             color: theme.iconTheme.color,
                           ),
-                          onPressed: () => model.saveRecentSearches(context),
+                          onPressed: () => model.saveSearch(context),
                         ),
                         suffixIconColor: theme.iconTheme.color,
                         focusColor: theme.iconTheme.color,

@@ -1,13 +1,21 @@
+import 'package:spot/core/utils/hive_boxes.dart';
+
 import 'core/utils/exports.dart';
 import 'styles/themes.dart' as _themes;
+
+import 'package:spot/core/models/recent_search.dart';
 
 import './ui/views/main/main_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  Hive.registerAdapter(RecentSearchAdapter());
+  await Hive.openBox(HiveBoxes.searchStorageBox);
+
   setupLocator();
   await ThemeManager.initialise();
-  await Hive.initFlutter();
 
   runApp(const App());
 }

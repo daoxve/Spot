@@ -1,5 +1,4 @@
 // Packages
-export 'package:animated_text_kit/animated_text_kit.dart';
 export 'package:curved_navigation_bar/curved_navigation_bar.dart';
 export 'package:flutter/cupertino.dart' hide FormField, RefreshCallback;
 export 'package:flutter/material.dart' hide FormField;
@@ -21,6 +20,10 @@ export 'package:spot/styles/constants.dart';
 export 'package:spot/ui/views/home/home_view.dart';
 export 'package:spot/ui/views/main/main_view.dart';
 export 'package:spot/ui/views/recents/recents_view.dart';
+
+//Utils
+export 'package:spot/core/utils/hive_keys.dart';
+export 'package:spot/core/utils/hive_store.dart';
 
 
 // Widgets

@@ -9,6 +9,7 @@ environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
+  another_flushbar: ^1.10.28
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.2
   dio: ^4.0.4

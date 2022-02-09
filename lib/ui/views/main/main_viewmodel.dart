@@ -9,6 +9,10 @@ class MainViewModel extends IndexTrackingViewModel {
     const BottomNavigationBarItem(
       label: 'Recents',
       icon: Icon(CupertinoIcons.square_list, size: 20),
+    ),
+    const BottomNavigationBarItem(
+      label: 'About',
+      icon: Icon(CupertinoIcons.info_circle_fill, size: 20),
     )
   ];
 
@@ -18,6 +22,8 @@ class MainViewModel extends IndexTrackingViewModel {
         return const HomeView();
       case 1:
         return const RecentsView();
+      case 2:
+        return const AboutView();
       default:
         return const HomeView();
     }

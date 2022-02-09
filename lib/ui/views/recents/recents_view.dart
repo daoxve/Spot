@@ -8,6 +8,7 @@ class RecentsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    var textTheme = theme.textTheme;
 
     return ViewModelBuilder<RecentsViewModel>.reactive(
       onModelReady: (model) => model.initHiveBox(),
@@ -55,7 +56,8 @@ class RecentsView extends StatelessWidget {
                             separatorBuilder: (ctx, i) => const SizedBox(height: 10),
                             itemBuilder: (context, index) {
                               model.insertAtIndex(index);
-                              DateFormat dateFormat = DateFormat('dd-MM-yyyy h:mma');
+                              var boxIndex = box.getAt((box.length - 1) - index);
+                              var dateFormat = DateFormat('dd-MM-yyyy h:mma');
 
                               return SizedBox(
                                 height: 70,
@@ -67,15 +69,16 @@ class RecentsView extends StatelessWidget {
                                   ),
                                   child: ListTile(
                                     title: Text(
-                                      box.getAt((box.length - 1) - index).phoneNumber,
-                                      style: const TextStyle(
-                                        color: Colors.blue,
-                                        fontSize: 18,
-                                      ),
+                                      boxIndex.phoneNumber,
+                                      style: textTheme.headline1!.copyWith(fontSize: 18),
                                     ),
                                     trailing: Text(
                                       TimeHelper.currentDate(
-                                        dateFormat.format(DateTime.now()),
+                                        dateFormat.format(boxIndex.timeOfSearch),
+                                        numericDates: true,
+                                      ),
+                                      style: textTheme.subtitle2!.copyWith(
+                                        color: theme.iconTheme.color!.withOpacity(0.4),
                                       ),
                                     ),
                                   ),

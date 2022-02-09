@@ -26,12 +26,14 @@ class TimeHelper {
       return '${difference.inHours} hours ago';
     } else if (difference.inHours >= 1) {
       return (numericDates) ? '1 hour ago' : 'An hour ago';
+    } else if (difference.inMinutes >= 30) {
+      return '~ 30 mins ago';
     } else if (difference.inMinutes >= 10) {
       return '${difference.inMinutes} minutes ago';
     } else if (difference.inMinutes >= 3) {
-      return 'A few minutes ago';
+      return '${difference.inMinutes} minutes ago';
     } else if (difference.inMinutes >= 2) {
-      return 'More than a minute ago';
+      return '~ 1 minute ago';
     } else if (difference.inMinutes >= 1) {
       return (numericDates) ? '1 minute ago' : 'A minute ago';
     } else if (difference.inSeconds >= 5) {

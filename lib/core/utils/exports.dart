@@ -19,6 +19,7 @@ export 'package:spot/styles/constants.dart';
 export 'package:spot/ui/views/home/home_view.dart';
 export 'package:spot/ui/views/main/main_view.dart';
 export 'package:spot/ui/views/recents/recents_view.dart';
+export 'package:spot/ui/views/about/about_view.dart';
 
 //Utils
 export 'package:spot/core/utils/hive_keys.dart';

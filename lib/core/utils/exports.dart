@@ -1,5 +1,4 @@
 // Packages
-export 'package:curved_navigation_bar/curved_navigation_bar.dart';
 export 'package:flutter/cupertino.dart' hide FormField, RefreshCallback;
 export 'package:flutter/material.dart' hide FormField;
 // export 'package:google_fonts/google_fonts.dart';

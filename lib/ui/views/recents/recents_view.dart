@@ -14,59 +14,56 @@ class RecentsView extends StatelessWidget {
       onModelReady: (model) => model.initHiveBox(),
       viewModelBuilder: () => RecentsViewModel(),
       // onDispose: (model) => model.disposeAll(),
-      builder: (context, model, child) => Scaffold(
-        backgroundColor: theme.backgroundColor,
-        appBar: AppBar(
-          title: Text(
-            'Recent Lookups',
-            style: textTheme.headline1,
-          ),
-          centerTitle: false,
-          elevation: 0,
-          actions: [
-            IconButton(
-              onPressed: () => model.deleteAllItems(),
-              icon: const Icon(
-                Icons.delete,
-                size: 25,
-              ),
-              color: Colors.red,
-            ),
-          ],
+      builder: (context, model, child) => ValueListenableBuilder(
+        valueListenable: model.box.listenable(),
+        builder: (BuildContext context, Box box, Widget? widget) => Scaffold(
           backgroundColor: theme.backgroundColor,
-        ),
-        body: ValueListenableBuilder(
-          valueListenable: model.box.listenable(),
-          builder: (context, Box box, widget) {
-            return box.isEmpty
-                ? const Center(
-                    child: Text('Empty'),
-                  )
-                : ListView.separated(
-                    itemCount: box.length,
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const SizedBox(height: 10);
-                    },
-                    itemBuilder: (BuildContext context, int index) {
-                      var currentBox = box;
-                      var searchData = currentBox.getAt(index);
+          appBar: AppBar(
+            title: Text(
+              'Recent Lookups',
+              style: textTheme.headline1,
+            ),
+            centerTitle: false,
+            elevation: 0,
+            actions: [
+              IconButton(
+                onPressed: model.deleteAllItems,
+                icon: const Icon(
+                  Icons.delete,
+                  size: 25,
+                ),
+                color: Colors.red,
+              ),
+            ],
+            backgroundColor: theme.backgroundColor,
+          ),
+          body: box.isEmpty
+              ? const Center(
+                  child: Text('Empty'),
+                )
+              : ListView.separated(
+                  itemCount: box.length,
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const SizedBox(height: 10);
+                  },
+                  itemBuilder: (BuildContext context, int index) {
+                    var currentBox = box;
+                    var searchData = currentBox.getAt(index);
 
-                      print('Building');
-                      print(currentBox);
-                      print(searchData);
+                    print('Building');
+                    print(searchData);
 
-                      return ListTile(
-                        title: Text(
-                          searchData.toString(),
-                          style: const TextStyle(
-                            color: Colors.blue,
-                            fontSize: 25,
-                          ),
+                    return ListTile(
+                      title: Text(
+                        '$searchData',
+                        style: const TextStyle(
+                          color: Colors.blue,
+                          fontSize: 18,
                         ),
-                      );
-                    },
-                  );
-          },
+                      ),
+                    );
+                  },
+                ),
         ),
       ),
     );

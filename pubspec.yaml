@@ -11,14 +11,11 @@ environment:
 dependencies:
   another_flushbar: ^1.10.28
   cupertino_icons: ^1.0.2
-  curved_navigation_bar: ^1.0.2
   dio: ^4.0.4
   flutter:
     sdk: flutter
-  hive: ^2.0.5
   hive_flutter: ^1.1.0
   json_annotation: ^4.4.0
-  shared_preferences: ^2.0.12
   stacked: ^2.2.8
   stacked_services: ^0.8.16
   stacked_themes: ^0.3.8+1

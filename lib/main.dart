@@ -1,9 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:spot/core/utils/hive_boxes.dart';
 
-import './ui/views/home/home_view.dart';
+import 'core/utils/exports.dart';
+import 'styles/themes.dart' as _themes;
 
-void main() {
+import 'package:spot/core/models/recent_search.dart';
+
+import './ui/views/main/main_view.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  Hive.registerAdapter(RecentSearchAdapter());
+  await Hive.openBox(HiveBoxes.searchStorageBox);
+
+  setupLocator();
+  await ThemeManager.initialise();
+
   runApp(const App());
 }
 
@@ -12,14 +25,21 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      builder: () => MaterialApp(
+    return ThemeBuilder(
+      statusBarColorBuilder: (theme) => theme!.backgroundColor,
+      navigationBarColorBuilder: (theme) => theme!.backgroundColor,
+      // defaultThemeMode: ThemeMode.system,
+      darkTheme: _themes.darkTheme,
+      lightTheme: _themes.lightTheme,
+      builder: (context, regularTheme, darkTheme, themeMode) => MaterialApp(
         title: 'Spot',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const HomeView(),
+        theme: regularTheme,
+        darkTheme: darkTheme,
+        themeMode: themeMode,
+        debugShowCheckedModeBanner: false,
+        navigatorKey: StackedService.navigatorKey,
+        onGenerateRoute: StackedRouter().onGenerateRoute,
+        home: const MainView(),
       ),
     );
   }

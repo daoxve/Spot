@@ -13,13 +13,17 @@ class MainView extends StatelessWidget {
       viewModelBuilder: () => MainViewModel(),
       builder: (context, model, child) => Scaffold(
         body: model.getViewForIndex(model.currentIndex),
-        bottomNavigationBar: CurvedNavigationBar(
+        bottomNavigationBar: BottomNavigationBar(
           items: model.items,
-          index: model.currentIndex,
+          currentIndex: model.currentIndex,
           onTap: model.setIndex,
-          color: theme.colorScheme.secondary,
+          type: BottomNavigationBarType.fixed,
+          // fixedColor: theme.colorScheme.background,
+          selectedItemColor: theme.iconTheme.color,
+          unselectedItemColor: theme.iconTheme.color!.withOpacity(0.4),
+          selectedFontSize: 14.0,
+          unselectedFontSize: 14.0,
           backgroundColor: theme.backgroundColor,
-          height: 60,
         ),
       ),
     );

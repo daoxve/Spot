@@ -1,9 +1,15 @@
 import 'package:spot/core/utils/exports.dart';
 
 class MainViewModel extends IndexTrackingViewModel {
-  final List<Widget> items = [
-    const Icon(CupertinoIcons.home, size: 20),
-    const Icon(CupertinoIcons.square_list, size: 20),
+  final List<BottomNavigationBarItem> items = [
+    const BottomNavigationBarItem(
+      label: 'Home',
+      icon: Icon(CupertinoIcons.home, size: 20),
+    ),
+    const BottomNavigationBarItem(
+      label: 'Recents',
+      icon: Icon(CupertinoIcons.square_list, size: 20),
+    )
   ];
 
   Widget getViewForIndex(int index) {

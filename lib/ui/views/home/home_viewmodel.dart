@@ -10,7 +10,7 @@ class HomeViewModel extends IndexTrackingViewModel {
       phoneNumber: textController.text,
     );
 
-    HiveStore.addDataToHive(recentSearch.phoneNumber);
+    HiveUtil.addData(recentSearch);
     print('Saved your input.');
     textController.clear();
   }

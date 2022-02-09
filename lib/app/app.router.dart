@@ -8,7 +8,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked/stacked_annotations.dart';
 
 import '../ui/views/home/home_view.dart';
 import '../ui/views/main/main_view.dart';

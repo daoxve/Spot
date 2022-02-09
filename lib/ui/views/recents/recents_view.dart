@@ -8,7 +8,6 @@ class RecentsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    final textTheme = theme.textTheme;
 
     return ViewModelBuilder<RecentsViewModel>.reactive(
       onModelReady: (model) => model.initHiveBox(),
@@ -18,51 +17,76 @@ class RecentsView extends StatelessWidget {
         valueListenable: model.box.listenable(),
         builder: (BuildContext context, Box box, Widget? widget) => Scaffold(
           backgroundColor: theme.backgroundColor,
-          appBar: AppBar(
-            title: Text(
-              'Recent Lookups',
-              style: textTheme.headline1,
-            ),
-            centerTitle: false,
-            elevation: 0,
-            actions: [
-              IconButton(
-                onPressed: model.deleteAllItems,
-                icon: const Icon(
-                  Icons.delete,
-                  size: 25,
-                ),
-                color: Colors.red,
-              ),
-            ],
-            backgroundColor: theme.backgroundColor,
-          ),
           body: box.isEmpty
               ? const Center(
                   child: Text('Empty'),
                 )
-              : ListView.separated(
-                  itemCount: box.length,
-                  separatorBuilder: (BuildContext context, int index) {
-                    return const SizedBox(height: 10);
-                  },
-                  itemBuilder: (BuildContext context, int index) {
-                    var currentBox = box;
-                    var searchData = currentBox.getAt(index);
-
-                    print('Building');
-                    print(searchData);
-
-                    return ListTile(
-                      title: Text(
-                        '$searchData',
-                        style: const TextStyle(
-                          color: Colors.blue,
-                          fontSize: 18,
+              : SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Recents',
+                              style: TextStyle(
+                                fontSize: 36.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: model.deleteAll,
+                              icon: const Icon(
+                                Icons.delete,
+                                size: 25,
+                              ),
+                              color: Colors.red,
+                            )
+                          ],
                         ),
-                      ),
-                    );
-                  },
+                        const SizedBox(height: 21.0),
+                        Flexible(
+                          child: ListView.separated(
+                            itemCount: box.length,
+                            physics: const BouncingScrollPhysics(),
+                            separatorBuilder: (ctx, i) => const SizedBox(height: 10),
+                            itemBuilder: (context, index) {
+                              model.insertAtIndex(index);
+                              DateFormat dateFormat = DateFormat('dd-MM-yyyy h:mma');
+
+                              return SizedBox(
+                                height: 70,
+                                child: Card(
+                                  elevation: 0,
+                                  color: theme.colorScheme.background,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: ListTile(
+                                    title: Text(
+                                      box.getAt((box.length - 1) - index).phoneNumber,
+                                      style: const TextStyle(
+                                        color: Colors.blue,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                    trailing: Text(
+                                      TimeHelper.currentDate(
+                                        dateFormat.format(DateTime.now()),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
         ),
       ),

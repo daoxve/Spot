@@ -1,11 +1,7 @@
-import 'package:spot/core/utils/hive_boxes.dart';
-
 import 'core/utils/exports.dart';
 import 'styles/themes.dart' as _themes;
 
 import 'package:spot/core/models/recent_search.dart';
-
-import './ui/views/main/main_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,9 +22,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ThemeBuilder(
-      statusBarColorBuilder: (theme) => theme!.backgroundColor,
-      navigationBarColorBuilder: (theme) => theme!.backgroundColor,
-      // defaultThemeMode: ThemeMode.system,
+      statusBarColorBuilder: (theme) => theme!.colorScheme.background,
+      navigationBarColorBuilder: (theme) => theme!.colorScheme.background,
+      defaultThemeMode: ThemeMode.dark,
       darkTheme: _themes.darkTheme,
       lightTheme: _themes.lightTheme,
       builder: (context, regularTheme, darkTheme, themeMode) => MaterialApp(

@@ -8,9 +8,10 @@ class HomeViewModel extends IndexTrackingViewModel {
   void saveSearch(BuildContext context) {
     RecentSearch recentSearch = RecentSearch(
       phoneNumber: textController.text,
+      timeOfSearch: DateTime.now(),
     );
 
-    HiveStore.addDataToHive(recentSearch.phoneNumber);
+    HiveUtil.addData(recentSearch);
     print('Saved your input.');
     textController.clear();
   }

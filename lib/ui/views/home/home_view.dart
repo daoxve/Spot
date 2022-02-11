@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:spot/core/utils/exports.dart';
 import 'package:spot/ui/widgets/detail_chip.dart';
 
@@ -53,7 +54,7 @@ class HomeView extends StatelessWidget {
                     text: 'Identify that ',
                     children: [
                       TextSpan(
-                        text: 'suspicious caller.',
+                        text: 'suspicious number.',
                         style: TextStyle(
                           color: Colors.red,
                         ),
@@ -72,14 +73,14 @@ class HomeView extends StatelessWidget {
                 onSaved: (value) {},
                 keyboardAppearance: theme.brightness,
                 onFieldSubmitted: (value) => model.saveSearch(context),
-                // textAlign: TextAlign.center,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(15),
+                  FilteringTextInputFormatter.allow(RegExp('[+0-9]')),
+                ],
                 decoration: InputDecoration(
                   suffixIcon: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 3, 8, 2),
                     child: Container(
-                      // width: 36.0,
-                      // height: 36.0,
-                      // margin: const EdgeInsets.only(right: 12),
                       decoration: BoxDecoration(
                         color: theme.backgroundColor,
                         borderRadius: BorderRadius.circular(10),

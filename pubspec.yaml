@@ -15,7 +15,9 @@ dependencies:
   flutter:
     sdk: flutter
   hive_flutter: ^1.1.0
+  intl: ^0.17.0
   json_annotation: ^4.4.0
+  shimmer: ^2.0.0
   stacked: ^2.2.8
   stacked_services: ^0.8.16
   stacked_themes: ^0.3.8+1

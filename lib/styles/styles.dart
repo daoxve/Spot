@@ -11,9 +11,14 @@ const Color kcOrangeColor = Color(0xffff9800);
 const Color kcGreen = Color(0xFF3D8B27);
 const Color kcLightGreen = Color(0xFFDDFEE2);
 
-final kLinearGradient = LinearGradient(colors: [
-  
-],);
+final kLinearGradient = const LinearGradient(
+  colors: [
+    Color(0xFFB181BF),
+    Color(0xFF83AFE7),
+  ],
+).createShader(
+  const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0),
+);
 
 final kTextInputBorder = OutlineInputBorder(
   borderRadius: BorderRadius.circular(15),

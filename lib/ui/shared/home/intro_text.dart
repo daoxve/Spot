@@ -7,25 +7,28 @@ class IntroText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(top: 40.0),
-      child: Text.rich(
-        TextSpan(
-          text: 'Verify any \n',
-          children: [
-            TextSpan(
-              text: 'phone number.',
-              style: TextStyle(
-                color: Colors.deepOrange,
-                fontWeight: FontWeight.w900,
-              ),
+    return Padding(
+      padding: EdgeInsets.only(top: 40.h),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Lookup details',
+            style: TextStyle(
+              fontSize: 36.sp,
+              fontWeight: FontWeight.bold,
             ),
-          ],
-        ),
-        style: TextStyle(
-          fontSize: 36.0,
-          fontWeight: FontWeight.bold,
-        ),
+          ),
+          Text(
+            'for any website.',
+            style: TextStyle(
+              fontSize: 36.sp,
+              fontWeight: FontWeight.w900,
+              foreground: Paint()..shader = kLinearGradient,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -11,6 +11,10 @@ const Color kcOrangeColor = Color(0xffff9800);
 const Color kcGreen = Color(0xFF3D8B27);
 const Color kcLightGreen = Color(0xFFDDFEE2);
 
+final kLinearGradient = LinearGradient(colors: [
+  
+],);
+
 final kTextInputBorder = OutlineInputBorder(
   borderRadius: BorderRadius.circular(15),
   borderSide: BorderSide.none,

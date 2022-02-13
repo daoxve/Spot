@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'core/utils/exports.dart';
 import 'styles/themes.dart' as _themes;
 
@@ -21,21 +23,33 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ThemeBuilder(
-      statusBarColorBuilder: (theme) => theme!.colorScheme.background,
-      navigationBarColorBuilder: (theme) => theme!.colorScheme.background,
-      defaultThemeMode: ThemeMode.dark,
-      darkTheme: _themes.darkTheme,
-      lightTheme: _themes.lightTheme,
-      builder: (context, regularTheme, darkTheme, themeMode) => MaterialApp(
-        title: 'Spot',
-        theme: regularTheme,
-        darkTheme: darkTheme,
-        themeMode: themeMode,
-        debugShowCheckedModeBanner: false,
-        navigatorKey: StackedService.navigatorKey,
-        onGenerateRoute: StackedRouter().onGenerateRoute,
-        home: const MainView(),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: () => ThemeBuilder(
+        statusBarColorBuilder: (theme) => theme!.backgroundColor,
+        navigationBarColorBuilder: (theme) => theme!.backgroundColor,
+        defaultThemeMode: ThemeMode.system,
+        darkTheme: _themes.darkTheme,
+        lightTheme: _themes.lightTheme,
+        builder: (context, regularTheme, darkTheme, themeMode) => MaterialApp(
+          title: 'Spot',
+          builder: (context, widget) {
+            ScreenUtil.setContext(context);
+            return MediaQuery(
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+              child: widget!,
+            );
+          },
+          theme: regularTheme,
+          darkTheme: darkTheme,
+          themeMode: themeMode,
+          debugShowCheckedModeBanner: false,
+          navigatorKey: StackedService.navigatorKey,
+          onGenerateRoute: StackedRouter().onGenerateRoute,
+          // home: const HomeView(),
+        ),
       ),
     );
   }

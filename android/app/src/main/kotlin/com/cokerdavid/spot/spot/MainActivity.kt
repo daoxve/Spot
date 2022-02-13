@@ -1,4 +1,4 @@
-package com.cokerdavid.spot.spot
+package com.cokerdavid.spot
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,4 +1,6 @@
 import 'package:spot/core/utils/exports.dart';
+import 'package:spot/ui/shared/recents/app_bar.dart';
+import 'package:spot/ui/shared/recents/recents_list.dart';
 
 import 'recents_viewmodel.dart';
 
@@ -13,79 +15,30 @@ class RecentsView extends StatelessWidget {
     return ViewModelBuilder<RecentsViewModel>.reactive(
       onModelReady: (model) => model.initHiveBox(),
       viewModelBuilder: () => RecentsViewModel(),
-      // onDispose: (model) => model.disposeAll(),
       builder: (context, model, child) => ValueListenableBuilder(
         valueListenable: model.box.listenable(),
         builder: (BuildContext context, Box box, Widget? widget) => Scaffold(
           backgroundColor: theme.backgroundColor,
+          appBar: RecentsAppBar(
+            theme: theme,
+            textTheme: textTheme,
+            model: model,
+          ),
           body: box.isEmpty
               ? const Center(
                   child: Text('Empty'),
                 )
               : SafeArea(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Recents',
-                              style: TextStyle(
-                                fontSize: 36.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: model.deleteAll,
-                              icon: const Icon(
-                                Icons.delete,
-                                size: 25,
-                              ),
-                              color: Colors.red,
-                            )
-                          ],
-                        ),
-                        const SizedBox(height: 21.0),
-                        Flexible(
-                          child: ListView.separated(
-                            itemCount: box.length,
-                            physics: const BouncingScrollPhysics(),
-                            separatorBuilder: (ctx, i) => const SizedBox(height: 10),
-                            itemBuilder: (context, index) {
-                              model.insertAtIndex(index);
-                              var boxIndex = box.getAt((box.length - 1) - index);
-                              var dateFormat = DateFormat('dd-MM-yyyy h:mma');
-
-                              return SizedBox(
-                                height: 70,
-                                child: Card(
-                                  elevation: 0,
-                                  color: theme.colorScheme.background,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: ListTile(
-                                    title: Text(
-                                      boxIndex.phoneNumber,
-                                      style: textTheme.headline1!.copyWith(fontSize: 18),
-                                    ),
-                                    trailing: Text(
-                                      TimeHelper.currentDate(
-                                        dateFormat.format(boxIndex.timeOfSearch),
-                                        numericDates: true,
-                                      ),
-                                      style: textTheme.subtitle2!.copyWith(
-                                        color: theme.iconTheme.color!.withOpacity(0.4),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
+                        RecentsList(
+                          theme: theme,
+                          textTheme: textTheme,
+                          box: box,
+                          model: model,
                         ),
                       ],
                     ),

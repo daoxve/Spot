@@ -12,16 +12,13 @@ import 'package:stacked/stacked_annotations.dart';
 
 import '../ui/views/about/about_view.dart';
 import '../ui/views/home/home_view.dart';
-import '../ui/views/main/main_view.dart';
 import '../ui/views/recents/recents_view.dart';
 
 class Routes {
-  static const String mainView = '/';
-  static const String homeView = '/home-view';
+  static const String homeView = '/';
   static const String recentsView = '/recents-view';
   static const String aboutView = '/about-view';
   static const all = <String>{
-    mainView,
     homeView,
     recentsView,
     aboutView,
@@ -32,7 +29,6 @@ class StackedRouter extends RouterBase {
   @override
   List<RouteDef> get routes => _routes;
   final _routes = <RouteDef>[
-    RouteDef(Routes.mainView, page: MainView),
     RouteDef(Routes.homeView, page: HomeView),
     RouteDef(Routes.recentsView, page: RecentsView),
     RouteDef(Routes.aboutView, page: AboutView),
@@ -40,12 +36,6 @@ class StackedRouter extends RouterBase {
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
-    MainView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const MainView(),
-        settings: data,
-      );
-    },
     HomeView: (data) {
       return CupertinoPageRoute<dynamic>(
         builder: (context) => const HomeView(),

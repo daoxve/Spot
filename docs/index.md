@@ -1,6 +1,6 @@
 ## Hi, Welcome to Spot's Official Documentation.
 
-You can quickly get to the [disclaimer](DISCLAIMER.html) here, or our [licensing](./LICENSE.html).
+You can quickly get to the [disclaimer](DISCLAIMER.html) here, or our [licensing](../LICENSE.html).
 
 ### More coming soon
 

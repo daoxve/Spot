@@ -18,9 +18,9 @@ class StatusTile extends StatelessWidget {
     final textTheme = theme.textTheme;
 
     return SizedBox(
-      height: 70,
+      height: 70.h,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
         child: Card(
           elevation: 2,
           color: tileColor,
@@ -28,7 +28,7 @@ class StatusTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: EdgeInsets.symmetric(horizontal: 13.w),
             child: Flex(
               direction: Axis.horizontal,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,7 +40,7 @@ class StatusTile extends StatelessWidget {
                     child: Text(
                       trailingText,
                       style: textTheme.headline6!.copyWith(
-                        fontSize: 18,
+                        fontSize: 18.sp,
                         color: kcGreen,
                       ),
                     ),
@@ -49,7 +49,7 @@ class StatusTile extends StatelessWidget {
                 Gap().whiteSpaceW,
                 // Checkbox
                 CircleAvatar(
-                  radius: 20,
+                  radius: 20.r,
                   backgroundColor: statusBoxColor,
                   child: const Icon(
                     Icons.check,

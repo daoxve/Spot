@@ -16,6 +16,7 @@ export 'package:stacked_themes/stacked_themes.dart';
 
 // Styles
 export 'package:spot/styles/styles.dart';
+export 'package:spot/styles/app_strings.dart';
 
 // Views
 export 'package:spot/ui/views/about/about_view.dart';
@@ -30,3 +31,4 @@ export 'package:spot/core/utils/hive_keys.dart';
 export 'package:spot/core/utils/hive_util.dart';
 
 // Widgets
+export 'package:spot/ui/shared/color_inverter.dart';

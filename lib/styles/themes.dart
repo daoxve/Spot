@@ -18,7 +18,6 @@ ThemeData lightTheme = ThemeData(
   ),
   popupMenuTheme: PopupMenuThemeData(
     elevation: 2,
-    enableFeedback: false,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15),
     ),

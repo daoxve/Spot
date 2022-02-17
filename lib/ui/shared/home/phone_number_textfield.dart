@@ -26,7 +26,7 @@ class PhoneNumberTextField extends StatelessWidget {
       ],
       decoration: InputDecoration(
         suffixIcon: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 3, 8, 2),
+          padding: EdgeInsets.fromLTRB(0, 3.h, 8.w, 2.h),
           child: Container(
             decoration: BoxDecoration(
               color: theme.backgroundColor,
@@ -46,7 +46,7 @@ class PhoneNumberTextField extends StatelessWidget {
         focusColor: theme.iconTheme.color,
         hintText: 'Add a phone number...',
         hintStyle: textTheme.subtitle1!.copyWith(color: const Color(0xFF6B6F7A)),
-        contentPadding: const EdgeInsets.fromLTRB(15, 24, 15, 18),
+        contentPadding: EdgeInsets.fromLTRB(15.w, 24.h, 15.w, 18.h),
         filled: true,
         fillColor: theme.colorScheme.background,
         border: kTextInputBorder,

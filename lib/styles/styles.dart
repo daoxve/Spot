@@ -6,13 +6,24 @@ const Color kcOrangeColor = Color(0xffff9800);
 const Color kcGreen = Color(0xFF3D8B27);
 const Color kcLightGreen = Color(0xFFDDFEE2);
 
-final kLinearGradient = const LinearGradient(
+final kTextLinearGradient = const LinearGradient(
   colors: [
     Color(0xFFB181BF),
     Color(0xFF83AFE7),
   ],
 ).createShader(
   const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0),
+);
+
+const kLinearGradient = LinearGradient(
+  colors: [
+    Color(0xFFB181BF),
+    Color(0xFF83AFE7),
+  ],
+  begin: FractionalOffset(0.0, 0.0),
+  end: FractionalOffset(1.0, 0.0),
+  stops: [0.0, 1.0],
+  tileMode: TileMode.clamp,
 );
 
 final kTextInputBorder = OutlineInputBorder(

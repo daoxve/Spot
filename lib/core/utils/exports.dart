@@ -5,6 +5,7 @@ export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:flutter/services.dart';
 export 'package:hive_flutter/hive_flutter.dart';
 export 'package:intl/intl.dart';
+export 'package:url_launcher/link.dart';
 
 // App
 export 'package:spot/app/app.locator.dart';

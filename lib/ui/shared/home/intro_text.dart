@@ -25,7 +25,7 @@ class IntroText extends StatelessWidget {
             style: TextStyle(
               fontSize: 36.sp,
               fontWeight: FontWeight.w900,
-              foreground: Paint()..shader = kLinearGradient,
+              foreground: Paint()..shader = kTextLinearGradient,
             ),
           ),
         ],

@@ -21,7 +21,6 @@ import '../ui/views/about/about_view.dart';
     LazySingleton(classType: SnackbarService),
     LazySingleton(classType: BottomSheetService),
   ],
-  logger: StackedLogger(),
 )
 class AppSetup {
   //? Serves no purpose besides the annotation attached to it

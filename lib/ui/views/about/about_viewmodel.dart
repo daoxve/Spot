@@ -9,4 +9,9 @@ class AboutViewModel extends BaseViewModel {
   void navigateTo(route) {
     _navigationService.navigateTo(route);
   }
+
+  bool isDarkMode(BuildContext context) {
+    final result = getThemeManager(context).isDarkMode;
+    return result;
+  }
 }

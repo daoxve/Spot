@@ -26,15 +26,15 @@ class RecentsAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Text(
         'Recents',
-        style: textTheme.headline1!.copyWith(fontSize: 18),
+        style: textTheme.headline1!.copyWith(fontSize: 18.sp),
       ),
       centerTitle: true,
       actions: [
         IconButton(
           onPressed: model.deleteAll,
-          icon: const Icon(
+          icon: Icon(
             Icons.delete,
-            size: 25,
+            size: 25.sp,
           ),
           color: Colors.red,
         )
@@ -43,5 +43,5 @@ class RecentsAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(56.0);
+  Size get preferredSize => Size.fromHeight(56.h);
 }

@@ -37,12 +37,6 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           onSelected: model.popupValueActions,
           itemBuilder: (context) => model.popupItems,
           offset: const Offset(0, 50),
-          // shape: RoundedRectangleBorder(
-          //   borderRadius: BorderRadius.circular(15),
-          // ),
-          // color: theme.colorScheme.background,
-          // enableFeedback: false,
-          // elevation: 2,
         )
       ],
       elevation: 0,
@@ -51,5 +45,5 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(56);
+  Size get preferredSize => Size.fromHeight(56.h);
 }

@@ -1,10 +1,5 @@
 import 'package:spot/core/utils/exports.dart';
 
-// App Strings
-const String kInvalidNullActionTitle = 'Error?';
-const String kInvalidNullActionText = 'Oops! That seems to be required to work. 😅';
-const String cityNotServicedDialogSecondaryButton = 'View Areas';
-
 const Color kcRed = Color(0xFFCC2212);
 const Color kcLightRed = Color(0xFFFBE6E5);
 const Color kcOrangeColor = Color(0xffff9800);

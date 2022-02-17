@@ -30,7 +30,7 @@ class App extends StatelessWidget {
       builder: () => ThemeBuilder(
         statusBarColorBuilder: (theme) => theme!.backgroundColor,
         navigationBarColorBuilder: (theme) => theme!.backgroundColor,
-        defaultThemeMode: ThemeMode.system,
+        defaultThemeMode: ThemeMode.dark,
         darkTheme: _themes.darkTheme,
         lightTheme: _themes.lightTheme,
         builder: (context, regularTheme, darkTheme, themeMode) => MaterialApp(

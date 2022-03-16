@@ -1,7 +1,8 @@
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:spot/core/utils/exports.dart';
 
-class License extends StatelessWidget {
-  const License({
+class DisclaimerCard extends StatelessWidget {
+  const DisclaimerCard({
     Key? key,
     required this.theme,
     required this.textTheme,
@@ -13,9 +14,17 @@ class License extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 140.h,
-      width: double.maxFinite,
-      margin: EdgeInsets.symmetric(horizontal: 8.w, vertical: 20.h),
+      height: getValueForScreenType<double>(
+        context: context,
+        mobile: 130.0,
+        desktop: 250.0,
+      ),
+      width: getValueForScreenType<double>(
+        context: context,
+        mobile: double.maxFinite,
+        desktop: 450.0,
+      ),
+      margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
       decoration: BoxDecoration(
         color: theme.colorScheme.background,
         borderRadius: BorderRadius.circular(15),
@@ -25,23 +34,20 @@ class License extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'License:',
-            style: textTheme.headline6,
-          ),
-          Gap.smallH,
-          Text(
-            'BSD 3-Clause License',
+            'Disclaimer:',
             style: textTheme.headline6,
           ),
           Gap.smallH,
           Link(
             target: LinkTarget.self,
-            uri: Uri.parse(
-              'https://github.com/thecokerdavid/Spot/blob/master/LICENSE',
-            ),
+            uri: Uri.parse('https://cokerdavid.com/Spot/DISCLAIMER.html'),
             builder: (context, followLink) => Container(
-              width: 80.w,
-              height: 35.h,
+              width: getValueForScreenType<double>(
+                context: context,
+                mobile: 180.0,
+                desktop: 250.0,
+              ),
+              height: 35.0,
               decoration: BoxDecoration(
                 gradient: kLinearGradient,
                 borderRadius: BorderRadius.circular(10),
@@ -50,7 +56,7 @@ class License extends StatelessWidget {
                 onTap: followLink,
                 child: Center(
                   child: Text(
-                    'See more',
+                    'Read Our Official Disclaimer',
                     style: textTheme.headline6!.copyWith(
                       color: Colors.black,
                     ),

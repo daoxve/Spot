@@ -58,7 +58,7 @@ class HomeViewDesktop extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             children: [
               const IntroTextDesktop(),
@@ -74,10 +74,10 @@ class HomeViewDesktop extends StatelessWidget {
                 ),
               ),
               Gap.largeH,
-              Text(
+              const Text(
                 'Results',
                 style: TextStyle(
-                  fontSize: 16.sp,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -126,7 +126,7 @@ class HomeViewMobile extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -141,10 +141,10 @@ class HomeViewMobile extends StatelessWidget {
                 suffixIconFunction: () => model.getData(context),
               ),
               Gap.largeH,
-              Text(
+              const Text(
                 'Results',
                 style: TextStyle(
-                  fontSize: 16.sp,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.w500,
                 ),
               ),

@@ -27,7 +27,7 @@ class AboutAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Text(
         'About',
-        style: textTheme.headline1!.copyWith(fontSize: 18.sp),
+        style: textTheme.headline1!.copyWith(fontSize: 18.0),
       ),
       centerTitle: true,
       // actions: [],
@@ -35,5 +35,5 @@ class AboutAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(56.h);
+  Size get preferredSize => const Size.fromHeight(56.0);
 }

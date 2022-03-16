@@ -19,11 +19,11 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Padding(
-        padding: EdgeInsets.only(left: 8.w),
+      leading: const Padding(
+        padding: EdgeInsets.only(left: 8.0),
         child: Icon(
           Icons.align_horizontal_left,
-          size: 24.sp,
+          size: 24.0,
         ),
       ),
       iconTheme: theme.iconTheme,
@@ -32,13 +32,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           onPressed: toggleThemeFunction,
           icon: Icon(
             isDarkMode ? Icons.light_mode : Icons.dark_mode,
-            size: 25.sp,
+            size: 25.0,
             color: theme.iconTheme.color,
           ),
         ),
         PopupMenuButton(
           icon: const Icon(Icons.more_vert),
-          iconSize: 25.sp,
+          iconSize: 25.0,
           onSelected: onPopupSelected,
           itemBuilder: popupItemBuilder,
           offset: const Offset(0, 50),
@@ -50,5 +50,5 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(56.h);
+  Size get preferredSize => const Size.fromHeight(56.0);
 }

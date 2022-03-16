@@ -8,22 +8,22 @@ class IntroTextDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 120.h),
+      padding: const EdgeInsets.only(top: 120.0),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Lookup details',
               style: TextStyle(
-                fontSize: 46.sp,
+                fontSize: 46.0,
                 fontWeight: FontWeight.w900,
               ),
             ),
             Text(
               '  for any website.',
               style: TextStyle(
-                fontSize: 48.sp,
+                fontSize: 48.0,
                 fontWeight: FontWeight.w900,
                 foreground: Paint()..shader = kTextLinearGradient,
               ),

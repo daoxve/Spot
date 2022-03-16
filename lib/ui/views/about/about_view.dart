@@ -3,11 +3,8 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:spot/ui/widgets/about/about_the_app.dart';
 import 'package:spot/ui/widgets/about/app_bar.dart';
-import 'package:spot/ui/widgets/about/desktop/about_the_app_desktop.dart';
-import 'package:spot/ui/widgets/about/desktop/disclaimer_desktop.dart';
-import 'package:spot/ui/widgets/about/desktop/license_desktop.dart';
-import 'package:spot/ui/widgets/about/disclaimer.dart';
-import 'package:spot/ui/widgets/about/license.dart';
+import 'package:spot/ui/widgets/about/disclaimer_card.dart';
+import 'package:spot/ui/widgets/about/license_card.dart';
 
 import 'about_viewmodel.dart';
 
@@ -56,16 +53,16 @@ class AboutViewDesktop extends StatelessWidget {
         ),
         title: Text(
           'About',
-          style: textTheme.headline1!.copyWith(fontSize: 18.sp),
+          style: textTheme.headline1!.copyWith(fontSize: 18),
         ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-            AboutTheAppDesktop(
+            AboutTheApp(
               theme: theme,
               textTheme: textTheme,
               isLogoDark: model.isDarkMode(context),
@@ -74,13 +71,13 @@ class AboutViewDesktop extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Disclaimer
-                DisclaimerDesktop(
+                DisclaimerCard(
                   theme: theme,
                   textTheme: textTheme,
                 ),
 
                 // LICENSE
-                LicenseDesktop(
+                LicenseCard(
                   theme: theme,
                   textTheme: textTheme,
                 ),
@@ -118,35 +115,25 @@ class AboutViewMobile extends StatelessWidget {
       backgroundColor: theme.backgroundColor,
       appBar: AboutAppBar(theme: theme, textTheme: textTheme, model: model),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-            // About The App
             AboutTheApp(
               theme: theme,
               textTheme: textTheme,
               isLogoDark: model.isDarkMode(context),
             ),
-
-            // Whitespace
             Gap.mediumH,
-
-            // Disclaimer
-            Disclaimer(
+            DisclaimerCard(
               theme: theme,
               textTheme: textTheme,
             ),
-
-            // LICENSE
-            License(
+            LicenseCard(
               theme: theme,
               textTheme: textTheme,
             ),
-
-            // Bottom whitespace
             Gap.mediumH,
-
             Align(
               alignment: Alignment.bottomCenter,
               child: Text(
@@ -154,7 +141,6 @@ class AboutViewMobile extends StatelessWidget {
                 style: textTheme.headline6,
               ),
             ),
-
             Gap.smallH,
           ],
         ),

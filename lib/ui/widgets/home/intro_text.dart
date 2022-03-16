@@ -8,21 +8,21 @@ class IntroText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 40.h),
+      padding: const EdgeInsets.only(top: 40.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Lookup details',
             style: TextStyle(
-              fontSize: 36.sp,
+              fontSize: 36.0,
               fontWeight: FontWeight.bold,
             ),
           ),
           Text(
             'for any website.',
             style: TextStyle(
-              fontSize: 36.sp,
+              fontSize: 36.0,
               fontWeight: FontWeight.w900,
               foreground: Paint()..shader = kTextLinearGradient,
             ),

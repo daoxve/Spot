@@ -53,7 +53,7 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
 
     return viewModel.isLoading
         ? SizedBox(
-            height: 720.h,
+            height: 720.0,
             child: Shimmer.fromColors(
               baseColor: theme.colorScheme.primaryVariant,
               highlightColor: theme.colorScheme.secondaryVariant,
@@ -87,7 +87,7 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
                   Gap.smallH,
                   Flexible(
                     child: GridView.count(
-                      padding: EdgeInsets.symmetric(horizontal: 10.w),
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       crossAxisCount: 2,
                       crossAxisSpacing: 2,
                       mainAxisSpacing: 8,

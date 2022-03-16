@@ -18,16 +18,16 @@ class DomainNameTile extends StatelessWidget {
     final textTheme = theme.textTheme;
 
     return SizedBox(
-      height: 85.h,
+      height: 85.0,
       child: Card(
         elevation: 2,
         color: backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        margin: EdgeInsets.symmetric(horizontal: 10.w),
+        margin: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 13.w),
+          padding: const EdgeInsets.symmetric(horizontal: 13.0),
           child: Flex(
             direction: Axis.vertical,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,11 +37,11 @@ class DomainNameTile extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
-                    padding: EdgeInsets.only(top: 12.h),
+                    padding: const EdgeInsets.only(top: 12.0),
                     child: Text(
                       label,
                       style: textTheme.subtitle2!.copyWith(
-                        fontSize: 14.sp,
+                        fontSize: 14.0,
                         color: textTheme.subtitle2!.color,
                       ),
                     ),
@@ -55,7 +55,7 @@ class DomainNameTile extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.bottomRight,
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(18.w, 0, 3.w, 12.h),
+                    padding: const EdgeInsets.fromLTRB(18.0, 0, 3.0, 12.0),
                     child: FittedBox(
                       child: Text(
                         statusText,

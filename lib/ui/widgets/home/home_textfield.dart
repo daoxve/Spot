@@ -25,7 +25,7 @@ class HomeTextField extends StatelessWidget {
       onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
         suffixIcon: Padding(
-          padding: EdgeInsets.fromLTRB(0, 3.h, 8.w, 2.h),
+          padding: const EdgeInsets.fromLTRB(0, 3.0, 8.0, 2.0),
           child: GestureDetector(
             onTap: suffixIconFunction,
             child: Container(
@@ -35,7 +35,7 @@ class HomeTextField extends StatelessWidget {
               ),
               child: Icon(
                 CupertinoIcons.search,
-                size: 20.sp,
+                size: 20.0,
                 color: theme.iconTheme.color,
               ),
             ),
@@ -45,7 +45,7 @@ class HomeTextField extends StatelessWidget {
         focusColor: theme.iconTheme.color,
         hintText: 'Add a website URL...',
         hintStyle: textTheme.subtitle1!.copyWith(color: const Color(0xFF6B6F7A)),
-        contentPadding: EdgeInsets.fromLTRB(15.w, 24.h, 15.w, 18.h),
+        contentPadding: const EdgeInsets.fromLTRB(15.0, 24.0, 15.0, 18.0),
         filled: true,
         fillColor: theme.colorScheme.background,
         border: kTextInputBorder,

@@ -36,7 +36,7 @@ class RecentsView extends StatelessWidget {
                     child: Text('Empty'),
                   )
                 : Padding(
-                    padding: EdgeInsets.fromLTRB(16.w, 2.h, 16.w, 20.h),
+                    padding: const EdgeInsets.fromLTRB(16.0, 2.0, 16.0, 20.0),
                     child: ListView.separated(
                       itemCount: box.length,
                       physics: const BouncingScrollPhysics(),
@@ -47,7 +47,7 @@ class RecentsView extends StatelessWidget {
                         var dateFormat = DateFormat('dd-MM-yyyy h:mma');
 
                         return SizedBox(
-                          height: 70.h,
+                          height: 70.0,
                           child: Card(
                             elevation: 2,
                             color: theme.colorScheme.background,
@@ -56,10 +56,10 @@ class RecentsView extends StatelessWidget {
                             ),
                             child: ListTile(
                               contentPadding:
-                                  EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
+                                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
                               title: Text(
                                 boxIndex.searchedURL,
-                                style: textTheme.headline1!.copyWith(fontSize: 15.sp),
+                                style: textTheme.headline1!.copyWith(fontSize: 15.0),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 2,
                               ),

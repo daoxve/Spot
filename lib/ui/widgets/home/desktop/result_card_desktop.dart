@@ -117,7 +117,7 @@ class ResultCardDesktop extends HookViewModelWidget<HomeViewModel> {
                   Gap.smallH,
                   Flexible(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 3.w),
+                      padding: const EdgeInsets.symmetric(horizontal: 3.0),
                       child: Wrap(
                         spacing: 8,
                         runSpacing: 2,

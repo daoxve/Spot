@@ -8,9 +8,9 @@ void setupSnackbarUI() {
   service.registerCustomSnackbarConfig(
     variant: SnackbarType.success,
     config: SnackbarConfig(
-      messageTextStyle: TextStyle(
+      messageTextStyle: const TextStyle(
         color: Colors.black,
-        fontSize: 14.sp,
+        fontSize: 14.0,
         fontWeight: FontWeight.w500,
       ),
       mainButtonStyle: TextButton.styleFrom(
@@ -20,10 +20,10 @@ void setupSnackbarUI() {
           borderRadius: BorderRadius.circular(15),
         ),
       ),
-      icon: CircleAvatar(
-        radius: 15.r,
+      icon: const CircleAvatar(
+        radius: 15.0,
         backgroundColor: kcSuccess,
-        child: const Icon(
+        child: Icon(
           Icons.check,
           color: Colors.white,
         ),
@@ -32,8 +32,8 @@ void setupSnackbarUI() {
       titleColor: Colors.black,
       messageColor: Colors.black,
       mainButtonTextColor: kcSuccess,
-      margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+      margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       dismissDirection: DismissDirection.none,
       instantInit: true,
       shouldIconPulse: false,
@@ -46,9 +46,9 @@ void setupSnackbarUI() {
   service.registerCustomSnackbarConfig(
     variant: SnackbarType.failure,
     config: SnackbarConfig(
-      messageTextStyle: TextStyle(
+      messageTextStyle: const TextStyle(
         color: Colors.black,
-        fontSize: 14.sp,
+        fontSize: 14.0,
         fontWeight: FontWeight.w500,
         letterSpacing: 0.3,
       ),
@@ -59,15 +59,15 @@ void setupSnackbarUI() {
           borderRadius: BorderRadius.circular(15),
         ),
       ),
-      icon: Icon(
+      icon: const Icon(
         Icons.error_outline,
-        size: 35.sp,
+        size: 35.0,
         color: kcError,
       ),
       backgroundColor: kcErrorAccent,
       mainButtonTextColor: kcError,
-      margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+      margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       dismissDirection: DismissDirection.none,
       instantInit: true,
       borderRadius: 15,

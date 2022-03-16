@@ -24,7 +24,7 @@ class DetailTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
           child: Flex(
             direction: Axis.vertical,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,7 +32,7 @@ class DetailTile extends StatelessWidget {
               Text(
                 title + ':',
                 style: textTheme.subtitle2!.copyWith(
-                  fontSize: 12.sp,
+                  fontSize: 12.0,
                   letterSpacing: 0.4,
                 ),
                 textAlign: TextAlign.center,
@@ -41,7 +41,7 @@ class DetailTile extends StatelessWidget {
                 flex: 2,
                 child: FittedBox(
                   child: ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: 200.w),
+                    constraints: const BoxConstraints(maxWidth: 200.0),
                     child: Text(
                       content,
                       style: textTheme.headline2,

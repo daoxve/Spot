@@ -56,7 +56,7 @@ class LabelledAvatar extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(
               color: theme.colorScheme.background,
-              width: 1.8.w,
+              width: 1.8,
             ),
             borderRadius: borderRadius ?? BorderRadius.circular(100),
           ),

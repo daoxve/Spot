@@ -1,10 +1,25 @@
-import 'package:spot/core/models/recent_search.dart';
+import 'package:dio/dio.dart';
+import 'package:spot/core/models/site/site.dart';
 import 'package:spot/core/utils/exports.dart';
-import 'package:spot/ui/shared/dialog.dart';
 
-class HomeViewModel extends IndexTrackingViewModel {
+import 'package:spot/core/models/search/search.dart';
+import 'package:spot/core/services/dio_client.dart';
+
+class HomeViewModel extends BaseViewModel {
+  final log = getLogger('HomeViewModel');
+
+  Site? searchResult;
+  bool isLoading = false;
+
   final NavigationService _navigationService = locator<NavigationService>();
-  final DialogService _dialogService = locator<DialogService>();
+  final SnackbarService _snackbarService = locator<SnackbarService>();
+  final DioClient dioHelper = DioClient();
+
+  List<Group> siteGroups = [];
+  List<int> liveTechList = [];
+  List<int> deadTechList = [];
+  int totalLiveTech = 0;
+  int totalDeadTech = 0;
 
   TextEditingController textController = TextEditingController();
 
@@ -13,10 +28,6 @@ class HomeViewModel extends IndexTrackingViewModel {
       value: 'about',
       child: Text('About'),
     ),
-    // PopupMenuItem(
-    //   value: 'rateApp',
-    //   child: Text('Rate Our App'),
-    // ),
   ];
 
   void popupValueActions(String result) {
@@ -24,36 +35,130 @@ class HomeViewModel extends IndexTrackingViewModel {
       case 'about':
         navigateTo(Routes.aboutView);
         break;
-
-      // TODO: Implement Rate App Functionality
-
-      //  case 'rateApp':
-      //   print('Rate App clicked');
-      //   break;
     }
   }
 
-  void saveSearch(BuildContext context) {
-    RecentSearch recentSearch = RecentSearch(
-      phoneNumber: textController.text,
+  void getData(BuildContext context) async {
+    isLoading = true;
+    notifyListeners();
+
+    final key = dotenv.env['KEY'];
+
+    try {
+      if (textController.text.isEmpty) {
+        initFocusHelper(context);
+
+        _snackbarService.showCustomSnackBar(
+          mainButtonTitle: 'Okay',
+          onMainButtonTapped: navigateBack,
+          onTap: navigateBack,
+          duration: const Duration(seconds: 3),
+          message: kRequiredActionText,
+          variant: SnackbarType.failure,
+        );
+
+        isLoading = false;
+        notifyListeners();
+
+        return;
+      }
+
+      final data = await dioHelper.getData(
+        // TODO: Hide API key (done)
+        url: 'https://api.builtwith.com/free1/api.json?KEY=$key&LOOKUP=${textController.text}',
+        context: context,
+        snackbarService: _snackbarService,
+        onSnackbarTap: navigateBack,
+      );
+
+      final jsonData = Site.fromJson(data);
+      siteGroups.addAll(jsonData.groups?.toList() ?? []);
+
+      getLiveTech();
+      getDeadTech();
+      log.i('Success: Data retrieved successfully');
+
+      searchResult = jsonData;
+
+      _saveSearch(context);
+      notifyListeners();
+    } on DioError catch (e) {
+      isLoading = false;
+      notifyListeners();
+
+      _snackbarService.showCustomSnackBar(
+        mainButtonTitle: 'Okay',
+        onMainButtonTapped: navigateBack,
+        onTap: navigateBack,
+        duration: const Duration(seconds: 3),
+        message: 'Oops! You can\'t do that.',
+        variant: SnackbarType.failure,
+      );
+      textController.clear();
+
+      log.e('An Exception! $e');
+
+      isLoading = false;
+      notifyListeners();
+    } catch (e) {
+      isLoading = false;
+      notifyListeners();
+
+      _snackbarService.showCustomSnackBar(
+        mainButtonTitle: 'Okay',
+        onMainButtonTapped: navigateBack,
+        onTap: navigateBack,
+        duration: const Duration(seconds: 3),
+        message: 'No internet connection.',
+        variant: SnackbarType.failure,
+      );
+      textController.clear();
+
+      log.e('Oops! $e');
+    }
+
+    isLoading = false;
+    notifyListeners();
+  }
+
+  int getLiveTech() {
+    for (Group groups in siteGroups) {
+      liveTechList.add(groups.live);
+    }
+
+    totalLiveTech = liveTechList.fold(0, (p, c) => p + c);
+
+    log.i('List of live tech: $liveTechList');
+    log.i('Live tech count is $totalLiveTech');
+    notifyListeners();
+
+    return totalLiveTech;
+  }
+
+  int getDeadTech() {
+    for (Group groups in siteGroups) {
+      deadTechList.add(groups.dead);
+    }
+
+    totalDeadTech = deadTechList.fold(0, (p, c) => p + c);
+
+    log.i('List of dead tech: $deadTechList');
+    log.i('Dead tech count is $totalDeadTech');
+    notifyListeners();
+
+    return totalDeadTech;
+  }
+
+  void _saveSearch(BuildContext context) {
+    Search newSearch = Search(
+      searchedURL: textController.text,
       timeOfSearch: DateTime.now(),
     );
 
-    if (textController.text.isNotEmpty) {
-      HiveUtil.addData(recentSearch);
-      print('Saved your input.');
-      textController.clear();
-    } else {
-      _dialogService.showDialog(
-        title: kInvalidNullActionTitle,
-        description: kInvalidNullActionText,
-      );
-      // showAlertDialog(
-      //   context: context,
-      //   typeOfAlert: 'warning',
-      //   navigateBack: navigateBack,
-      // );
-    }
+    HiveUtil.addData(newSearch);
+
+    log.i('Saved your input at ${newSearch.timeOfSearch}');
+    textController.clear();
   }
 
   void navigateBack() {
@@ -62,6 +167,13 @@ class HomeViewModel extends IndexTrackingViewModel {
 
   void navigateTo(route) {
     _navigationService.navigateTo(route);
+  }
+
+  void navigateWithTransition(route) {
+    _navigationService.navigateWithTransition(
+      route,
+      transition: 'scale',
+    );
   }
 
   void initFocusHelper(BuildContext context) {
@@ -73,7 +185,11 @@ class HomeViewModel extends IndexTrackingViewModel {
   }
 
   void toggleTheme(BuildContext context) {
-    getThemeManager(context).toggleDarkLightTheme();
+    if (getThemeManager(context).selectedThemeMode == ThemeMode.dark) {
+      getThemeManager(context).setThemeMode(ThemeMode.light);
+    } else {
+      getThemeManager(context).setThemeMode(ThemeMode.dark);
+    }
   }
 
   bool isDarkMode(BuildContext context) {

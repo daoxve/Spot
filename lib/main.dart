@@ -1,16 +1,16 @@
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'core/utils/exports.dart';
 import 'styles/themes.dart' as _themes;
 
-import 'package:spot/core/models/recent_search.dart';
+import 'package:spot/core/models/search/search.dart';
 
-void main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
-  Hive.registerAdapter(RecentSearchAdapter());
-  await Hive.openBox(HiveBoxes.searchStorageBox);
+  Hive.registerAdapter(SearchAdapter());
+  await Hive.openBox(HiveBoxes.searchBox);
+
+  await dotenv.load();
 
   setupLocator();
   await ThemeManager.initialise();
@@ -28,8 +28,8 @@ class App extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: () => ThemeBuilder(
-        statusBarColorBuilder: (theme) => theme!.backgroundColor,
-        navigationBarColorBuilder: (theme) => theme!.backgroundColor,
+        statusBarColorBuilder: (_) => Colors.transparent,
+        navigationBarColorBuilder: (theme) => theme!.colorScheme.background,
         defaultThemeMode: ThemeMode.dark,
         darkTheme: _themes.darkTheme,
         lightTheme: _themes.lightTheme,

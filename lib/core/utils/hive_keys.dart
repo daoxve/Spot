@@ -1,3 +1,3 @@
 class HiveKeys {
-  static String phoneNumber = 'phoneNumber';
+  static String searchURL = 'searchURL';
 }

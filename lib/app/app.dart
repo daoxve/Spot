@@ -1,5 +1,5 @@
 //*************************************************************************** */
-// flutter packages pub run build_runner build --delete-conflicting-outputs
+// Use flutter packages pub run build_runner build --delete-conflicting-outputs
 //*************************************************************************** */
 
 import 'package:stacked/stacked_annotations.dart';
@@ -21,6 +21,7 @@ import '../ui/views/about/about_view.dart';
     LazySingleton(classType: SnackbarService),
     LazySingleton(classType: BottomSheetService),
   ],
+  logger: StackedLogger(),
 )
 class AppSetup {
   //? Serves no purpose besides the annotation attached to it

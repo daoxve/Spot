@@ -1,3 +1,3 @@
 class HiveBoxes {
-  static const String searchStorageBox = 'searchStorageBox';
+  static const String searchBox = 'searchBox';
 }

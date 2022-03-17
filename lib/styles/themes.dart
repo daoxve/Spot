@@ -2,19 +2,22 @@ import 'package:spot/core/utils/exports.dart';
 
 //* Light
 ThemeData lightTheme = ThemeData(
-  backgroundColor: Colors.white,
+  backgroundColor: kcWhite,
   colorScheme: ColorScheme.fromSwatch().copyWith(
-    secondary: Colors.black12,
-    onSecondary: Colors.black,
-    background: const Color(0xFFF6F7FE),
+    secondary: kcBlack12,
+    onSecondary: kcBlack,
+    primaryVariant: kcLightVar,
+    secondaryVariant: kcLightVarAccent,
+    background: kcWhiteBackground,
     brightness: Brightness.light,
   ),
-  iconTheme: const IconThemeData(color: Colors.black),
+  iconTheme: const IconThemeData(color: kcBlack),
   textTheme: TextTheme(
-    headline1: kHeadline1.copyWith(color: Colors.black),
-    headline6: kHeadline6.copyWith(color: Colors.black),
-    subtitle1: kSubtitle1.copyWith(color: const Color(0xFF6C6C6C)),
-    subtitle2: kSubtitle2.copyWith(color: Colors.black54),
+    headline1: kHeadline1.copyWith(color: kcBlack),
+    headline2: kHeadline2.copyWith(color: kcBlack),
+    headline6: kHeadline6.copyWith(color: kcBlack),
+    subtitle1: kSubtitle1.copyWith(color: kcGrey),
+    subtitle2: kSubtitle2.copyWith(color: kcBlack54),
   ),
   popupMenuTheme: PopupMenuThemeData(
     elevation: 2,
@@ -26,31 +29,35 @@ ThemeData lightTheme = ThemeData(
   hintColor: Colors.black,
   highlightColor: Colors.transparent,
   splashColor: Colors.transparent,
+
 );
 
 //* Dark
 ThemeData darkTheme = ThemeData(
-  backgroundColor: const Color(0xFF22242C),
+  backgroundColor: kcDark,
   colorScheme: ColorScheme.fromSwatch().copyWith(
-    secondary: const Color(0xFF16181D),
-    onSecondary: Colors.white,
-    background: const Color(0xFF16181D),
+    secondary: kcDarkAccent,
+    onSecondary: kcWhite,
+    primaryVariant: kcDarkVar,
+    secondaryVariant: kcDarkVarAccent,
+    background: kcDarkAccent,
     brightness: Brightness.dark,
   ),
-  iconTheme: const IconThemeData(color: Colors.white),
+  iconTheme: const IconThemeData(color: kcWhite),
   textTheme: TextTheme(
-    headline1: kHeadline1.copyWith(color: Colors.white),
-    headline6: kHeadline6.copyWith(color: Colors.white),
-    subtitle1: kSubtitle1.copyWith(color: Colors.white),
-    subtitle2: kSubtitle2.copyWith(color: Colors.white54),
+    headline1: kHeadline1.copyWith(color: kcWhite),
+    headline2: kHeadline2.copyWith(color: kcWhite),
+    headline6: kHeadline6.copyWith(color: kcWhite),
+    subtitle1: kSubtitle1.copyWith(color: kcWhite),
+    subtitle2: kSubtitle2.copyWith(color: kcWhite54),
   ),
   popupMenuTheme: PopupMenuThemeData(
     elevation: 2,
-    enableFeedback: false,
+    enableFeedback: true,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15),
     ),
-    color: const Color(0xFF16181D),
+    color: kcDarkAccent,
   ),
   hintColor: Colors.white,
   highlightColor: Colors.transparent,

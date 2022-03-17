@@ -1,5 +1,8 @@
 import 'package:spot/core/utils/exports.dart';
-import 'package:spot/ui/shared/about/app_bar.dart';
+
+import 'package:spot/ui/widgets/about/about_the_app.dart';
+import 'package:spot/ui/widgets/about/disclaimer_card.dart';
+import 'package:spot/ui/widgets/about/license_card.dart';
 
 import 'about_viewmodel.dart';
 
@@ -8,204 +11,145 @@ class AboutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-
     return ViewModelBuilder<AboutViewModel>.reactive(
       viewModelBuilder: () => AboutViewModel(),
       builder: (context, model, child) {
-        return Scaffold(
-          backgroundColor: theme.backgroundColor,
-          appBar: AboutAppBar(theme: theme, textTheme: textTheme, model: model),
-          body: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // About The App
-                SizedBox(
-                  height: 310.h,
-                  child: Card(
-                    elevation: 4,
-                    color: theme.colorScheme.background,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
-                      child: Column(
-                        // direction: Axis.vertical,
-                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          LabeledAvatar(
-                            theme: theme,
-                            textTheme: textTheme,
-                            imagePath: 'assets/images/logo/spot.png',
-                            isImageDark: model.isDarkMode(context),
-                            label: 'Spot',
-                          ),
-                          Gap().smallH,
-                          Flexible(
-                            flex: 1,
-                            child: Text(
-                              kAboutTheApp,
-                              style: TextStyle(
-                                color: theme.iconTheme.color!.withOpacity(0.8),
-                                fontSize: 13.5.sp,
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: 0.4,
-                                wordSpacing: 1.15,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-
-                // Whitespace
-                Gap().mediumH,
-
-                // About The Developer
-                Card(
-                  elevation: 4,
-                  color: theme.colorScheme.background,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
-                    child: Flex(
-                      direction: Axis.horizontal,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        LabeledAvatar(
-                          theme: theme,
-                          textTheme: textTheme,
-                          imagePath: 'assets/images/logo/spot.png',
-                          isImageDark: model.isDarkMode(context),
-                          label: 'Spot',
-                        ),
-                        Gap().mediumW,
-                        Flexible(
-                          flex: 1,
-                          child: Text(
-                            kAboutTheApp,
-                            style: TextStyle(
-                              color: theme.iconTheme.color!.withOpacity(0.8),
-                              fontSize: 13.5.sp,
-                              fontWeight: FontWeight.w900,
-                              letterSpacing: 0.8,
-                              wordSpacing: 1.15,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-
-                // More whitespace
-                Gap().mediumH,
-
-                // Disclaimer
-                SizedBox(
-                  height: 900.h,
-                  child: Card(
-                    elevation: 4,
-                    color: theme.colorScheme.background,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
-                      child: Flex(
-                        direction: Axis.vertical,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Disclaimer',
-                            style: textTheme.headline6,
-                          ),
-                          Gap().smallH,
-                          Flexible(
-                            flex: 1,
-                            child: Text(
-                              '',
-                              style: TextStyle(
-                                color: theme.iconTheme.color!.withOpacity(0.8),
-                                fontSize: 13.5.sp,
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: 0.4,
-                                wordSpacing: 1.15,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+        return ScreenTypeLayout(
+          mobile: AboutViewMobile(model: model),
+          tablet: AboutViewMobile(model: model),
+          desktop: AboutViewDesktop(model: model),
         );
       },
     );
   }
 }
 
-class LabeledAvatar extends StatelessWidget {
-  const LabeledAvatar({
+class AboutViewDesktop extends StatelessWidget {
+  const AboutViewDesktop({
     Key? key,
-    required this.theme,
-    required this.textTheme,
-    required this.isImageDark,
-    required this.imagePath,
-    required this.label,
+    required this.model,
   }) : super(key: key);
 
-  final ThemeData theme;
-  final TextTheme textTheme;
-  final bool isImageDark;
-  final String imagePath;
-  final String label;
+  final AboutViewModel model;
 
   @override
   Widget build(BuildContext context) {
-    final logoImage = ClipRRect(
-      borderRadius: BorderRadius.circular(100),
-      child: Image.asset(
-        imagePath,
-        fit: BoxFit.cover,
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+
+    return Scaffold(
+      backgroundColor: theme.backgroundColor,
+      appBar: AppBar(
+        backgroundColor: theme.backgroundColor,
+        iconTheme: theme.iconTheme,
+        elevation: 0,
+        leading: InkWell(
+          onTap: model.navigateBack,
+          borderRadius: BorderRadius.circular(100),
+          child: const Icon(CupertinoIcons.back),
+        ),
+        title: Text(
+          'About',
+          style: textTheme.headline1!.copyWith(fontSize: 18),
+        ),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            const AboutTheApp(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Disclaimer
+                DisclaimerCard(
+                  theme: theme,
+                  textTheme: textTheme,
+                ),
+
+                // LICENSE
+                LicenseCard(
+                  theme: theme,
+                  textTheme: textTheme,
+                ),
+              ],
+            ),
+            const SizedBox(height: 180.0),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Text(
+                '© David Coker.  2022.',
+                style: textTheme.headline6,
+              ),
+            ),
+            Gap.mediumH,
+          ],
+        ),
       ),
     );
+  }
+}
 
-    return Column(
-      children: [
-        Container(
-          width: 80.w,
-          height: 85.h,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: theme.colorScheme.background,
-              width: 1.8.w,
+class AboutViewMobile extends StatelessWidget {
+  const AboutViewMobile({
+    Key? key,
+    required this.model,
+  }) : super(key: key);
+
+  final AboutViewModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+
+    return Scaffold(
+      backgroundColor: theme.backgroundColor,
+      appBar: AppBar(
+        backgroundColor: theme.backgroundColor,
+        iconTheme: theme.iconTheme,
+        elevation: 0,
+        leading: InkWell(
+          onTap: model.navigateBack,
+          borderRadius: BorderRadius.circular(100),
+          child: const Icon(CupertinoIcons.back),
+        ),
+        title: Text(
+          'About',
+          style: textTheme.headline1!.copyWith(fontSize: 18.0),
+        ),
+        centerTitle: true,
+        // actions: [],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            const AboutTheApp(),
+            Gap.mediumH,
+            DisclaimerCard(
+              theme: theme,
+              textTheme: textTheme,
             ),
-            shape: BoxShape.circle,
-          ),
-          child: isImageDark ? logoImage : ColorInverter(child: logoImage),
+            LicenseCard(
+              theme: theme,
+              textTheme: textTheme,
+            ),
+            Gap.mediumH,
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Text(
+                '© David Coker.  2022.',
+                style: textTheme.headline6,
+              ),
+            ),
+            Gap.smallH,
+          ],
         ),
-        Gap().smallH,
-        Text(
-          label,
-          style: textTheme.headline6,
-        ),
-      ],
+      ),
     );
   }
 }

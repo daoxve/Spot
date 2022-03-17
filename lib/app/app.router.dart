@@ -6,7 +6,7 @@
 
 // ignore_for_file: public_member_api_docs
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
 
@@ -37,20 +37,23 @@ class StackedRouter extends RouterBase {
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, StackedRouteFactory>{
     HomeView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const HomeView(),
+      return PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const HomeView(),
         settings: data,
       );
     },
     RecentsView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const RecentsView(),
+      return PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const RecentsView(),
         settings: data,
       );
     },
     AboutView: (data) {
-      return CupertinoPageRoute<dynamic>(
-        builder: (context) => const AboutView(),
+      return PageRouteBuilder<dynamic>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const AboutView(),
         settings: data,
       );
     },

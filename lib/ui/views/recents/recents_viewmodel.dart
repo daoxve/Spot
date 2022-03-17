@@ -4,9 +4,10 @@ class RecentsViewModel extends BaseViewModel {
   late final Box box;
 
   final NavigationService _navigationService = locator<NavigationService>();
+  final DialogService _dialogService = locator<DialogService>();
 
   Future<dynamic> initHiveBox() async {
-    box = Hive.box(HiveBoxes.searchStorageBox);
+    box = Hive.box(HiveBoxes.searchBox);
     return box;
   }
 
@@ -14,8 +15,20 @@ class RecentsViewModel extends BaseViewModel {
     HiveUtil.insertAtIndex(index);
   }
 
-  void deleteAll() {
-    HiveUtil.deleteAllData();
+  void showConfirmationDialog() async {
+    final dialogResponse = await _dialogService.showCustomDialog(
+      variant: DialogType.confirmation,
+      customData: DialogStatus.warning,
+      barrierDismissible: true,
+      title: kConfirmationTitle,
+      description: kConfirmationText,
+      mainButtonTitle: 'Yeah, totally',
+      secondaryButtonTitle: 'Nope',
+    );
+
+    if (dialogResponse?.confirmed == true) {
+      HiveUtil.deleteAllData();
+    }
   }
 
   void navigateBack() {

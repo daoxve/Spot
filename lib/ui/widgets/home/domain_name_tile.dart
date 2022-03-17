@@ -37,7 +37,7 @@ class DomainNameTile extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 12.0),
+                    padding: const EdgeInsets.only(top: 13.0, left: 3.0),
                     child: Text(
                       label,
                       style: textTheme.subtitle2!.copyWith(

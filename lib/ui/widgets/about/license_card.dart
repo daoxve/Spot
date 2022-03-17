@@ -1,4 +1,3 @@
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:spot/core/utils/exports.dart';
 
 class LicenseCard extends StatelessWidget {
@@ -44,28 +43,31 @@ class LicenseCard extends StatelessWidget {
           ),
           Gap.smallH,
           Link(
-            target: LinkTarget.self,
+            target: LinkTarget.blank,
             uri: Uri.parse(
               'https://github.com/thecokerdavid/Spot/blob/master/LICENSE',
             ),
-            builder: (context, followLink) => GestureDetector(
-              onTap: followLink,
-              child: Container(
-                width: getValueForScreenType<double>(
-                  context: context,
-                  mobile: 80.0,
-                  desktop: 150.0,
-                ),
-                height: 35.0,
-                decoration: BoxDecoration(
-                  gradient: kLinearGradient,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text(
-                    'See more',
-                    style: textTheme.headline6!.copyWith(
-                      color: Colors.black,
+            builder: (context, followLink) => MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: followLink,
+                child: Container(
+                  width: getValueForScreenType<double>(
+                    context: context,
+                    mobile: 80.0,
+                    desktop: 150.0,
+                  ),
+                  height: 35.0,
+                  decoration: BoxDecoration(
+                    gradient: kLinearGradient,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'See more',
+                      style: textTheme.headline6!.copyWith(
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ),

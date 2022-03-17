@@ -1,4 +1,3 @@
-import 'package:spot/core/enums/dialog_status.dart';
 import 'package:spot/core/utils/exports.dart';
 
 class RecentsViewModel extends BaseViewModel {
@@ -37,6 +36,6 @@ class RecentsViewModel extends BaseViewModel {
   }
 
   void navigateTo(route) {
-   _navigationService.navigateTo(route);
+    _navigationService.navigateTo(route);
   }
 }

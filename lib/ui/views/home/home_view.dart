@@ -1,13 +1,11 @@
 import 'package:spot/core/utils/exports.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:spot/ui/widgets/home/app_bar.dart';
+import 'package:spot/ui/widgets/home/desktop/app_bar_desktop.dart';
 import 'package:spot/ui/widgets/home/desktop/intro_text_desktop.dart';
-import 'package:spot/ui/widgets/home/desktop/result_card_desktop.dart';
 import 'package:spot/ui/widgets/home/intro_text.dart';
 import 'package:spot/ui/widgets/home/result_card.dart';
 import 'package:spot/ui/widgets/home/home_textfield.dart';
-import 'package:spot/ui/widgets/setup_snackbar_ui.dart';
 
 import 'home_viewmodel.dart';
 
@@ -17,10 +15,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
-      onModelReady: (model) {
-        setupSnackbarUI();
-        model.initFocusHelper(context);
-      },
+      onModelReady: (model) => model.initFocusHelper(context),
       viewModelBuilder: () => HomeViewModel(),
       builder: (context, model, child) {
         return ScreenTypeLayout(
@@ -49,12 +44,11 @@ class HomeViewDesktop extends StatelessWidget {
       onTap: () => model.initFocusHelper(context),
       child: Scaffold(
         backgroundColor: theme.backgroundColor,
-        appBar: HomeAppBar(
+        appBar: HomeAppBarDesktop(
           theme: theme,
           toggleThemeFunction: () => model.toggleTheme(context),
           isDarkMode: model.isDarkMode(context),
-          popupItemBuilder: (context) => model.popupItems,
-          onPopupSelected: model.popupValueActions,
+          helpIconFunction: () => model.navigateTo(Routes.aboutView),
         ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -82,16 +76,25 @@ class HomeViewDesktop extends StatelessWidget {
                 ),
               ),
               Gap.mediumH,
-              ResultCardDesktop(theme: theme),
+              SizedBox(
+                width: 1080.0,
+                child: ResultCard(theme: theme),
+              ),
+              Gap.mediumH,
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  '© David Coker.  2022.',
+                  style: textTheme.headline6,
+                ),
+              ),
               Gap.mediumH,
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          heroTag: 'recents',
-          onPressed: () => model.navigateWithTransition(
-            const RecentsView(),
-          ),
+          heroTag: HeroTag.recents,
+          onPressed: () => model.navigateTo(Routes.recentsView),
           child: const Icon(CupertinoIcons.square_list),
           backgroundColor: theme.colorScheme.background,
         ),
@@ -151,14 +154,20 @@ class HomeViewMobile extends StatelessWidget {
               Gap.mediumH,
               ResultCard(theme: theme),
               Gap.mediumH,
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  '© David Coker.  2022.',
+                  style: textTheme.headline6,
+                ),
+              ),
+              Gap.mediumH,
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          heroTag: 'recents',
-          onPressed: () => model.navigateWithTransition(
-            const RecentsView(),
-          ),
+          heroTag: HeroTag.recents,
+          onPressed: () => model.navigateTo(Routes.recentsView),
           child: const Icon(CupertinoIcons.square_list),
           backgroundColor: theme.colorScheme.background,
         ),

@@ -20,6 +20,7 @@ dependencies:
   json_annotation: ^4.4.0
   logger: ^1.1.0
   responsive_builder: ^0.4.2
+  rive: ^0.8.4
   shimmer: ^2.0.0
   stacked: ^2.2.8
   stacked_hooks: ^0.2.1+1
@@ -47,4 +48,5 @@ flutter:
     - .env
     - assets/
     - assets/logo/
+    - assets/rive/
     - assets/splash/

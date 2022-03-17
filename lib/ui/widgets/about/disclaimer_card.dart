@@ -1,4 +1,3 @@
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:spot/core/utils/exports.dart';
 
 class DisclaimerCard extends StatelessWidget {
@@ -39,26 +38,29 @@ class DisclaimerCard extends StatelessWidget {
           ),
           Gap.smallH,
           Link(
-            target: LinkTarget.self,
+            target: LinkTarget.blank,
             uri: Uri.parse('https://cokerdavid.com/Spot/DISCLAIMER.html'),
-            builder: (context, followLink) => Container(
-              width: getValueForScreenType<double>(
-                context: context,
-                mobile: 180.0,
-                desktop: 250.0,
-              ),
-              height: 35.0,
-              decoration: BoxDecoration(
-                gradient: kLinearGradient,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: GestureDetector(
-                onTap: followLink,
-                child: Center(
-                  child: Text(
-                    'Read Our Official Disclaimer',
-                    style: textTheme.headline6!.copyWith(
-                      color: Colors.black,
+            builder: (context, followLink) => GestureDetector(
+              onTap: followLink,
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: Container(
+                  width: getValueForScreenType<double>(
+                    context: context,
+                    mobile: 180.0,
+                    desktop: 250.0,
+                  ),
+                  height: 35.0,
+                  decoration: BoxDecoration(
+                    gradient: kLinearGradient,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Read Our Official Disclaimer',
+                      style: textTheme.headline6!.copyWith(
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ),

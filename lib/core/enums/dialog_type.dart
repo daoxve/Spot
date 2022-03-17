@@ -1,1 +1,1 @@
-enum DialogType { basic, confirmation }
+enum DialogType { confirmation }

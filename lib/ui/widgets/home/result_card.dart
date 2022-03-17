@@ -3,7 +3,7 @@ import 'package:spot/ui/widgets/home/detail_tile.dart';
 import 'package:spot/ui/widgets/home/domain_name_tile.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
-import '../../views/home/home_viewmodel.dart';
+import 'package:spot/ui/views/home/home_viewmodel.dart';
 
 class ResultCard extends HookViewModelWidget<HomeViewModel> {
   const ResultCard({
@@ -51,6 +51,36 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
     final oldestDate =
         TimeHelper.formatTimeInEpoch((findLargestGroup?.oldest ?? placeholderEpoch) * 1000);
 
+    List<String> tileTitle = [
+      'First Time of Detection',
+      'Last Time of Detection',
+      'Latest tech was added',
+      'Oldest tech was added',
+      'Total live technologies detected',
+      'Total deprecated technologies detected',
+      'Most detected technology',
+      'Live technologies for ${findLargestGroup?.name ?? "most detected"}',
+      'Total frameworks detected',
+      'Uses SSL',
+    ];
+
+    List<dynamic> tileContent = [
+      firstDate == epochTimeNow ? 'unknown' : firstDate,
+      lastDate == epochTimeNow ? 'unknown' : lastDate,
+      latestDate == 'Just now' ? 'unknown' : latestDate,
+      oldestDate == 'Just now' ? 'unknown' : oldestDate,
+      viewModel.totalLiveTech.toString(),
+      viewModel.totalDeadTech.toString(),
+      findLargestGroup?.name.capitalizeFirst ?? 'unknown',
+      findLargestGroup?.live.toString() ?? 'unknown',
+      apiGroup?[frameworkIndex ?? -1].live.toString() ?? 'unknown',
+      apiGroup?[sslIndex ?? -1].live == null
+          ? 'unknown'
+          : apiGroup?[sslIndex ?? -1].live == 0
+              ? 'No'
+              : 'Yes.',
+    ];
+
     return viewModel.isLoading
         ? SizedBox(
             height: 720.0,
@@ -66,8 +96,9 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
               ),
             ),
           )
-        : SizedBox(
-            height: 730.0,
+        : LimitedBox(
+            maxHeight: tileContent.length * 115.0,
+            maxWidth: 720.0,
             child: Card(
               color: theme.colorScheme.background,
               shape: RoundedRectangleBorder(
@@ -75,75 +106,44 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
               ),
               margin: EdgeInsets.zero,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Gap.mediumH,
-                  DomainNameTile(
-                    backgroundColor: theme.backgroundColor,
-                    label: 'Domain Name:',
-                    statusText: apiData?.domain ?? 'none yet',
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: DomainNameTile(
+                      backgroundColor: theme.backgroundColor,
+                      label: 'Domain Name:',
+                      statusText: apiData?.domain ?? 'none yet',
+                    ),
                   ),
                   Gap.smallH,
                   Flexible(
-                    child: GridView.count(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 2,
-                      mainAxisSpacing: 8,
-                      childAspectRatio: 9 / 6,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        DetailTile(
-                          title: 'First Time of Detection',
-                          content: firstDate == epochTimeNow ? 'unknown' : firstDate,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                      child: Wrap(
+                        spacing: 8,
+                        runSpacing: 2,
+                        alignment: WrapAlignment.center,
+                        children: List.generate(
+                          tileContent.length,
+                          (i) => SizedBox(
+                            width: getValueForScreenType<double>(
+                              context: context,
+                              mobile: 200,
+                              desktop: 250,
+                            ),
+                            height: 180,
+                            child: DetailTile(
+                              title: tileTitle[i],
+                              content: tileContent[i],
+                            ),
+                          ),
                         ),
-                        DetailTile(
-                          title: 'Last Time of Detection',
-                          content: lastDate == epochTimeNow ? 'unknown' : lastDate,
-                        ),
-                        DetailTile(
-                          title: 'Latest tech was added',
-                          content: latestDate == 'Just now' ? 'unknown' : latestDate,
-                        ),
-                        DetailTile(
-                          title: 'Oldest tech was added',
-                          content: oldestDate == 'Just now' ? 'unknown' : oldestDate,
-                        ),
-                        DetailTile(
-                          title: 'Total live technologies detected',
-                          content: viewModel.totalLiveTech.toString(),
-                        ),
-                        DetailTile(
-                          title: 'Total deprecated technologies detected',
-                          content: viewModel.totalDeadTech.toString(),
-                        ),
-                        DetailTile(
-                          title: 'Most detected technology',
-                          content: findLargestGroup?.name.capitalizeFirst ?? 'unknown',
-                        ),
-                        DetailTile(
-                          title: 'Live technologies for '
-                              '${findLargestGroup?.name ?? "most detected"}',
-                          content: findLargestGroup?.live.toString() ?? 'unknown',
-                        ),
-                        DetailTile(
-                          title: 'Total frameworks detected',
-                          content:
-                              apiGroup?[frameworkIndex ?? -1].live.toString() ?? 'unknown',
-                        ),
-                        DetailTile(
-                          title: 'Uses SSL',
-                          content: apiGroup?[sslIndex ?? -1].live == null
-                              ? 'unknown'
-                              : apiGroup?[sslIndex ?? -1].live == 0
-                                  ? 'No'
-                                  : 'Yes.',
-                        ),
-                        Gap.mediumH,
-                      ],
+                      ),
                     ),
                   ),
+                  Gap.mediumH,
                 ],
               ),
             ),

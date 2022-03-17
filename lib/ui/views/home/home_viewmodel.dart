@@ -64,7 +64,6 @@ class HomeViewModel extends BaseViewModel {
       }
 
       final data = await dioHelper.getData(
-        // TODO: Hide API key (done)
         url: 'https://api.builtwith.com/free1/api.json?KEY=$key&LOOKUP=${textController.text}',
         context: context,
         snackbarService: _snackbarService,
@@ -167,13 +166,6 @@ class HomeViewModel extends BaseViewModel {
 
   void navigateTo(route) {
     _navigationService.navigateTo(route);
-  }
-
-  void navigateWithTransition(route) {
-    _navigationService.navigateWithTransition(
-      route,
-      transition: 'scale',
-    );
   }
 
   void initFocusHelper(BuildContext context) {

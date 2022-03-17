@@ -1,21 +1,14 @@
 import 'package:spot/core/utils/exports.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 class LabelledAvatar extends StatelessWidget {
   const LabelledAvatar({
     Key? key,
-    required this.theme,
-    required this.textTheme,
-    required this.isImageDark,
     required this.imagePath,
     required this.label,
     this.labelSize,
     this.borderRadius,
   }) : super(key: key);
 
-  final ThemeData theme;
-  final TextTheme textTheme;
-  final bool isImageDark;
   final String imagePath;
   final String label;
   final double? labelSize;
@@ -23,20 +16,8 @@ class LabelledAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final logoImage = ClipRRect(
-      borderRadius: BorderRadius.circular(
-        getValueForScreenType<double>(
-          context: context,
-          mobile: 100,
-          tablet: 30,
-          desktop: 10,
-        ),
-      ),
-      child: Image.asset(
-        imagePath,
-        fit: BoxFit.fill,
-      ),
-    );
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
 
     return Column(
       children: [
@@ -45,13 +26,13 @@ class LabelledAvatar extends StatelessWidget {
             context: context,
             mobile: 95.0,
             tablet: 120.0,
-            desktop: 180.0,
+            desktop: 120.0,
           ),
           height: getValueForScreenType<double>(
             context: context,
             mobile: 95.0,
             tablet: 120.0,
-            desktop: 190.0,
+            desktop: 120.0,
           ),
           decoration: BoxDecoration(
             border: Border.all(
@@ -60,7 +41,20 @@ class LabelledAvatar extends StatelessWidget {
             ),
             borderRadius: borderRadius ?? BorderRadius.circular(100),
           ),
-          child: isImageDark ? logoImage : ColorInverter(child: logoImage),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(
+              getValueForScreenType<double>(
+                context: context,
+                mobile: 100,
+                tablet: 30,
+                desktop: 10,
+              ),
+            ),
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.fill,
+            ),
+          ),
         ),
         Gap.smallH,
         Text(

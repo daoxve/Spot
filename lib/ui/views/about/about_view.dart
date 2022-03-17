@@ -1,8 +1,6 @@
 import 'package:spot/core/utils/exports.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 import 'package:spot/ui/widgets/about/about_the_app.dart';
-import 'package:spot/ui/widgets/about/app_bar.dart';
 import 'package:spot/ui/widgets/about/disclaimer_card.dart';
 import 'package:spot/ui/widgets/about/license_card.dart';
 
@@ -41,7 +39,6 @@ class AboutViewDesktop extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.backgroundColor,
-      //! improvise
       appBar: AppBar(
         backgroundColor: theme.backgroundColor,
         iconTheme: theme.iconTheme,
@@ -62,11 +59,7 @@ class AboutViewDesktop extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-            AboutTheApp(
-              theme: theme,
-              textTheme: textTheme,
-              isLogoDark: model.isDarkMode(context),
-            ),
+            const AboutTheApp(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -83,7 +76,7 @@ class AboutViewDesktop extends StatelessWidget {
                 ),
               ],
             ),
-            Gap.mediumH,
+            const SizedBox(height: 180.0),
             Align(
               alignment: Alignment.bottomCenter,
               child: Text(
@@ -91,6 +84,7 @@ class AboutViewDesktop extends StatelessWidget {
                 style: textTheme.headline6,
               ),
             ),
+            Gap.mediumH,
           ],
         ),
       ),
@@ -113,17 +107,28 @@ class AboutViewMobile extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: theme.backgroundColor,
-      appBar: AboutAppBar(theme: theme, textTheme: textTheme, model: model),
+      appBar: AppBar(
+        backgroundColor: theme.backgroundColor,
+        iconTheme: theme.iconTheme,
+        elevation: 0,
+        leading: InkWell(
+          onTap: model.navigateBack,
+          borderRadius: BorderRadius.circular(100),
+          child: const Icon(CupertinoIcons.back),
+        ),
+        title: Text(
+          'About',
+          style: textTheme.headline1!.copyWith(fontSize: 18.0),
+        ),
+        centerTitle: true,
+        // actions: [],
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
-            AboutTheApp(
-              theme: theme,
-              textTheme: textTheme,
-              isLogoDark: model.isDarkMode(context),
-            ),
+            const AboutTheApp(),
             Gap.mediumH,
             DisclaimerCard(
               theme: theme,

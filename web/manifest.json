@@ -1,11 +1,11 @@
 {
-    "name": "spot",
-    "short_name": "spot",
+    "name": "Spot",
+    "short_name": "Spot",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Lookup details for ANY website.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

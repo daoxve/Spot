@@ -34,7 +34,7 @@ class RecentsView extends StatelessWidget {
                       const SizedBox(
                         height: 250.0,
                         width: 250.0,
-                        child: RiveAnimation.asset('rive/cubic.riv'),
+                        child: RiveAnimation.asset('animations/cubic.riv'),
                       ),
                       Align(
                           child: Text(

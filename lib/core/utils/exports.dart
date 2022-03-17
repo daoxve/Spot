@@ -25,9 +25,6 @@ export 'package:spot/core/enums/dialog_type.dart';
 export 'package:spot/core/enums/dialog_status.dart';
 export 'package:spot/core/enums/hero_tag.dart';
 
-// Exceptions
-export 'package:spot/core/exceptions/network_exception.dart';
-
 // Styles
 export 'package:spot/styles/styles.dart';
 export 'package:spot/styles/strings.dart';

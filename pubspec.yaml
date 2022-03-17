@@ -47,6 +47,5 @@ flutter:
   assets:
     - .env
     - assets/
+    - assets/animations/
     - assets/logo/
-    - assets/rive/
-    - assets/splash/

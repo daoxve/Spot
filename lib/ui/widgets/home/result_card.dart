@@ -138,7 +138,7 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
                               context: context,
                               mobile: 130,
                               tablet: 150,
-                              desktop: 180,
+                              desktop: 180
                             ),
                             child: DetailTile(
                               title: tileTitle[i],

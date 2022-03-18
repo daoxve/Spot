@@ -130,10 +130,16 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
                           (i) => SizedBox(
                             width: getValueForScreenType<double>(
                               context: context,
-                              mobile: 200,
+                              mobile: 135,
+                              tablet: 200,
                               desktop: 250,
                             ),
-                            height: 180,
+                            height: getValueForScreenType<double>(
+                              context: context,
+                              mobile: 130,
+                              tablet: 150,
+                              desktop: 180,
+                            ),
                             child: DetailTile(
                               title: tileTitle[i],
                               content: tileContent[i],

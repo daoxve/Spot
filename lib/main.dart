@@ -6,14 +6,12 @@ import 'package:spot/core/models/search/search.dart';
 import 'ui/widgets/setup_dialog_ui.dart';
 import 'ui/widgets/setup_snackbar_ui.dart';
 
-Future main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
   Hive.registerAdapter(SearchAdapter());
   await Hive.openBox(HiveBoxes.searchBox);
-
-  await dotenv.load();
 
   setupLocator();
   setupSnackbarUI();

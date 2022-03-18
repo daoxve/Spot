@@ -5,7 +5,5 @@ const String kConfirmationText =
     'Are you sure you want to delete data for all your previous searches? This cannot be undone.';
 
 const String kAboutTheApp = '''
-Combine the convenience of a mobile/web app and a fast, and performant UI - Spot.\n That's the result.
-
-Apart from it's user-friendly interface and smooth overall feel, Spot let's you lookup data from nearly ANY website and get accurate results at lightening speed.
+A user-friendly + convenient, fast and performant way to lookup details for almost any website - it's not sorcery. It's Spot. :)
 ''';

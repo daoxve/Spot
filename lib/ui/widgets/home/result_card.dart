@@ -83,7 +83,9 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
 
     return viewModel.isLoading
         ? SizedBox(
-            height: 720.0,
+            // maxHeight: 720.0,
+            height: tileContent.length * 110.0,
+            // maxWidth: 720.0,
             child: Shimmer.fromColors(
               baseColor: theme.colorScheme.primaryVariant,
               highlightColor: theme.colorScheme.secondaryVariant,

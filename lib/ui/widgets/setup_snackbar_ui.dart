@@ -1,6 +1,7 @@
 import 'package:spot/core/utils/exports.dart';
 
 /// This function initializes all snackbars to be used later in the app.
+/// TODO: Setup a custom snackbar for desktop.
 void setupSnackbarUI() {
   final service = locator<SnackbarService>();
 
@@ -32,7 +33,7 @@ void setupSnackbarUI() {
       titleColor: Colors.black,
       messageColor: Colors.black,
       mainButtonTextColor: kcSuccess,
-      margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+      margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 30.0),
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       dismissDirection: DismissDirection.none,
       instantInit: true,
@@ -66,9 +67,9 @@ void setupSnackbarUI() {
       ),
       backgroundColor: kcErrorAccent,
       mainButtonTextColor: kcError,
-      margin: const EdgeInsets.symmetric(horizontal: 80.0, vertical: 30.0),
+      margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 30.0),
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-      snackPosition: SnackPosition.TOP,
+      snackPosition: kIsWeb ? SnackPosition.TOP : SnackPosition.BOTTOM,
       dismissDirection: DismissDirection.none,
       instantInit: true,
       borderRadius: 15,

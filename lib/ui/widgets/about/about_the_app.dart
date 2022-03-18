@@ -14,8 +14,9 @@ class AboutTheApp extends StatelessWidget {
     return SizedBox(
       height: getValueForScreenType<double>(
         context: context,
-        mobile: 310.0,
-        desktop: 350.0,
+        mobile: 250.0,
+        tablet: 280.0,
+        desktop: 280.0,
       ),
       width: getValueForScreenType<double>(
         context: context,
@@ -40,13 +41,7 @@ class AboutTheApp extends StatelessWidget {
               Gap.smallH,
               Flexible(
                 child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxWidth: getValueForScreenType<double>(
-                      context: context,
-                      mobile: 420,
-                      desktop: null,
-                    ),
-                  ),
+                  constraints: const BoxConstraints(maxWidth: 320.0),
                   child: Text(
                     kAboutTheApp,
                     style: TextStyle(

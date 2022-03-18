@@ -42,38 +42,40 @@ class LicenseCard extends StatelessWidget {
             style: textTheme.headline6,
           ),
           Gap.smallH,
-          Link(
-            target: LinkTarget.blank,
-            uri: Uri.parse(
-              'https://github.com/thecokerdavid/Spot/blob/master/LICENSE',
-            ),
-            builder: (context, followLink) => MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: followLink,
-                child: Container(
-                  width: getValueForScreenType<double>(
-                    context: context,
-                    mobile: 80.0,
-                    desktop: 150.0,
-                  ),
-                  height: 35.0,
-                  decoration: BoxDecoration(
-                    gradient: kLinearGradient,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'See more',
-                      style: textTheme.headline6!.copyWith(
-                        color: Colors.black,
-                      ),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () async {
+                const url = 'https://github.com/thecokerdavid/Spot/blob/master/LICENSE';
+
+                if (await canLaunch(url)) {
+                  await launch(url, forceWebView: true, enableJavaScript: true);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
+              child: Container(
+                width: getValueForScreenType<double>(
+                  context: context,
+                  mobile: 80.0,
+                  desktop: 150.0,
+                ),
+                height: 35.0,
+                decoration: BoxDecoration(
+                  gradient: kLinearGradient,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Text(
+                    'See more',
+                    style: textTheme.headline6!.copyWith(
+                      color: Colors.black,
                     ),
                   ),
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

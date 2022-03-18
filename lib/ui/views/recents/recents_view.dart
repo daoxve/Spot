@@ -17,7 +17,7 @@ class RecentsView extends StatelessWidget {
       builder: (context, model, child) => ValueListenableBuilder(
         valueListenable: model.box.listenable(),
         builder: (BuildContext context, Box box, Widget? _) => Hero(
-          tag: HeroTag.recents,
+          tag: HeroTags.recents,
           child: Scaffold(
             backgroundColor: theme.backgroundColor,
             appBar: RecentsAppBar(
@@ -29,18 +29,39 @@ class RecentsView extends StatelessWidget {
             ),
             body: box.isEmpty
                 ? Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(
-                        height: 250.0,
-                        width: 250.0,
-                        child: RiveAnimation.asset('animations/cubic.riv'),
+                      Expanded(
+                        child: Flex(
+                          direction: Axis.vertical,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Flexible(
+                              child: SizedBox(
+                                height: 250.0,
+                                width: 250.0,
+                                child: RiveAnimation.asset('assets/animations/cubic.riv'),
+                              ),
+                            ),
+                            Align(
+                              child: Text(
+                                'Your recent searches go here',
+                                style: textTheme.headline6,
+                              ),
+                            ),
+                            // const Spacer(),
+                          ],
+                        ),
                       ),
                       Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 15.0),
                           child: Text(
-                        'Your recent searches go here',
-                        style: textTheme.headline6,
-                      )),
+                            '© David Coker.  2022.',
+                            style: textTheme.headline6,
+                          ),
+                        ),
+                      ),
                     ],
                   )
                 : Padding(
@@ -92,7 +113,7 @@ class RecentsView extends StatelessWidget {
                             },
                           ),
                         ),
-                        Gap.smallH,
+                        Gap.mediumH,
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: Text(
@@ -100,7 +121,7 @@ class RecentsView extends StatelessWidget {
                             style: textTheme.headline6,
                           ),
                         ),
-                        Gap.mediumH,
+                        Gap.smallH,
                       ],
                     ),
                   ),

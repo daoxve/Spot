@@ -1,6 +1,6 @@
 // Packages
 export 'package:flutter/cupertino.dart' hide FormField, RefreshCallback, TextDirection;
-export 'package:flutter_dotenv/flutter_dotenv.dart';
+export 'package:flutter/foundation.dart' show kIsWeb;
 export 'package:flutter/material.dart' hide FormField, TextDirection;
 export 'package:flutter/services.dart';
 export 'package:hive_flutter/hive_flutter.dart';
@@ -12,18 +12,19 @@ export 'package:stacked/stacked.dart';
 export 'package:stacked/stacked_annotations.dart';
 export 'package:stacked_services/stacked_services.dart';
 export 'package:stacked_themes/stacked_themes.dart';
-export 'package:url_launcher/link.dart';
+export 'package:url_launcher/url_launcher.dart';
 
 // App
 export 'package:spot/app/app.locator.dart';
 export 'package:spot/app/app.logger.dart';
 export 'package:spot/app/app.router.dart';
+export 'package:spot/secrets.dart';
 
 // Enums
-export 'package:spot/core/enums/snackbar_type.dart';
-export 'package:spot/core/enums/dialog_type.dart';
 export 'package:spot/core/enums/dialog_status.dart';
-export 'package:spot/core/enums/hero_tag.dart';
+export 'package:spot/core/enums/dialog_type.dart';
+export 'package:spot/core/enums/hero_tags.dart';
+export 'package:spot/core/enums/snackbar_type.dart';
 
 // Styles
 export 'package:spot/styles/styles.dart';

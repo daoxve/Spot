@@ -93,7 +93,7 @@ class HomeViewDesktop extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          heroTag: HeroTag.recents,
+          heroTag: HeroTags.recents,
           onPressed: () => model.navigateTo(Routes.recentsView),
           child: const Icon(CupertinoIcons.square_list),
           backgroundColor: theme.colorScheme.background,
@@ -166,7 +166,7 @@ class HomeViewMobile extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          heroTag: HeroTag.recents,
+          heroTag: HeroTags.recents,
           onPressed: () => model.navigateTo(Routes.recentsView),
           child: const Icon(CupertinoIcons.square_list),
           backgroundColor: theme.colorScheme.background,

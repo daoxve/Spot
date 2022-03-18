@@ -13,6 +13,7 @@ class HomeViewModel extends BaseViewModel {
 
   final NavigationService _navigationService = locator<NavigationService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
+  final TextEditingController textController = TextEditingController();
   final DioClient dioHelper = DioClient();
 
   List<Group> siteGroups = [];
@@ -20,8 +21,6 @@ class HomeViewModel extends BaseViewModel {
   List<int> deadTechList = [];
   int totalLiveTech = 0;
   int totalDeadTech = 0;
-
-  TextEditingController textController = TextEditingController();
 
   final popupItems = const [
     PopupMenuItem(
@@ -41,8 +40,6 @@ class HomeViewModel extends BaseViewModel {
   void getData(BuildContext context) async {
     isLoading = true;
     notifyListeners();
-
-    final key = dotenv.env['KEY'];
 
     try {
       if (textController.text.isEmpty) {

@@ -37,36 +37,40 @@ class DisclaimerCard extends StatelessWidget {
             style: textTheme.headline6,
           ),
           Gap.smallH,
-          Link(
-            target: LinkTarget.blank,
-            uri: Uri.parse('https://cokerdavid.com/Spot/DISCLAIMER.html'),
-            builder: (context, followLink) => GestureDetector(
-              onTap: followLink,
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: Container(
-                  width: getValueForScreenType<double>(
-                    context: context,
-                    mobile: 180.0,
-                    desktop: 250.0,
-                  ),
-                  height: 35.0,
-                  decoration: BoxDecoration(
-                    gradient: kLinearGradient,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Read Our Official Disclaimer',
-                      style: textTheme.headline6!.copyWith(
-                        color: Colors.black,
-                      ),
+          GestureDetector(
+            onTap: () async {
+              const url = 'https://cokerdavid.com/Spot/DISCLAIMER.html';
+
+              if (await canLaunch(url)) {
+                await launch(url, forceWebView: true, enableJavaScript: true);
+              } else {
+                throw 'Could not launch $url';
+              }
+            },
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: Container(
+                width: getValueForScreenType<double>(
+                  context: context,
+                  mobile: 200.0,
+                  desktop: 250.0,
+                ),
+                height: 35.0,
+                decoration: BoxDecoration(
+                  gradient: kLinearGradient,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Text(
+                    'Read Our Official Disclaimer',
+                    style: textTheme.headline6!.copyWith(
+                      color: Colors.black,
                     ),
                   ),
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

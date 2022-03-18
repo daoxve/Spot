@@ -3,6 +3,7 @@ import 'package:spot/core/utils/exports.dart';
 import 'package:spot/ui/widgets/about/about_the_app.dart';
 import 'package:spot/ui/widgets/about/disclaimer_card.dart';
 import 'package:spot/ui/widgets/about/license_card.dart';
+import 'package:spot/ui/widgets/about/version_card.dart';
 
 import 'about_viewmodel.dart';
 
@@ -58,33 +59,32 @@ class AboutViewDesktop extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         physics: const BouncingScrollPhysics(),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const AboutTheApp(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Disclaimer
                 DisclaimerCard(
                   theme: theme,
                   textTheme: textTheme,
                 ),
-
-                // LICENSE
                 LicenseCard(
                   theme: theme,
                   textTheme: textTheme,
                 ),
               ],
             ),
-            const SizedBox(height: 180.0),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(
-                '© David Coker.  2022.',
-                style: textTheme.headline6,
-              ),
+            VersionCard(
+              theme: theme,
+              textTheme: textTheme,
             ),
             Gap.mediumH,
+            Text(
+              '© David Coker.  2022.',
+              style: textTheme.headline6,
+            ),
+            Gap.smallH,
           ],
         ),
       ),
@@ -121,7 +121,6 @@ class AboutViewMobile extends StatelessWidget {
           style: textTheme.headline1!.copyWith(fontSize: 18.0),
         ),
         centerTitle: true,
-        // actions: [],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
@@ -138,13 +137,14 @@ class AboutViewMobile extends StatelessWidget {
               theme: theme,
               textTheme: textTheme,
             ),
+            VersionCard(
+              theme: theme,
+              textTheme: textTheme,
+            ),
             Gap.mediumH,
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(
-                '© David Coker.  2022.',
-                style: textTheme.headline6,
-              ),
+            Text(
+              '© David Coker.  2022.',
+              style: textTheme.headline6,
             ),
             Gap.smallH,
           ],

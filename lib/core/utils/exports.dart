@@ -18,7 +18,7 @@ export 'package:url_launcher/url_launcher.dart';
 export 'package:spot/app/app.locator.dart';
 export 'package:spot/app/app.logger.dart';
 export 'package:spot/app/app.router.dart';
-export 'package:spot/secrets.dart';
+export 'package:spot/core/utils/secrets.dart';
 
 // Enums
 export 'package:spot/core/enums/dialog_status.dart';

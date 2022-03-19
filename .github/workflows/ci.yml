@@ -14,7 +14,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
             flutter-version: '2.8.1'
-      - run: echo $SECRETS_FILE_CONTENT | base64 -di > lib/utils/secrets.dart
+      - run: echo $SECRETS_FILE_CONTENT | base64 -di > lib/core/utils/secrets.dart
         env:
           SECRETS_FILE_CONTENT: ${{ secrets.SECRETS_FILE_CONTENT }}
       - run: flutter pub get

@@ -37,7 +37,7 @@ jobs:
        run: flutter packages pub run build_runner build --delete-conflicting-outputs
 
      - name: Build release
-       run: flutter build web --release
+       run: flutter build web --web-renderer canvaskit
 
      - name: Upload artifacts
        uses: actions/upload-artifact@v1

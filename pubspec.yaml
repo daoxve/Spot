@@ -25,7 +25,7 @@ dependencies:
   stacked_hooks: ^0.2.1+1
   stacked_services:
     git:
-      url: git://github.com/thecokerdavid/stacked.git
+      url: https://github.com/thecokerdavid/stacked.git
       path: packages/stacked_services/
       ref: 6c6c7da
   stacked_themes: ^0.3.8+1

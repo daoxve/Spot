@@ -692,7 +692,7 @@ packages:
       path: "packages/stacked_services"
       ref: "6c6c7da"
       resolved-ref: "6c6c7da57dd6c7f95b4196b703f3aef08b6170cc"
-      url: "git://github.com/thecokerdavid/stacked.git"
+      url: "https://github.com/thecokerdavid/stacked.git"
     source: git
     version: "0.8.16"
   stacked_themes:

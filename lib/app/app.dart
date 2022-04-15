@@ -1,6 +1,8 @@
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../core/services/network_service.dart';
+
 import '../ui/views/home/home_view.dart';
 import '../ui/views/recents/recents_view.dart';
 import '../ui/views/about/about_view.dart';
@@ -16,6 +18,7 @@ import '../ui/views/about/about_view.dart';
     LazySingleton(classType: DialogService),
     LazySingleton(classType: SnackbarService),
     LazySingleton(classType: BottomSheetService),
+    LazySingleton(classType: NetworkService),
   ],
   logger: StackedLogger(),
 )

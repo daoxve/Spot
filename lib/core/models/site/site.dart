@@ -19,7 +19,7 @@ class Site with _$Site {
     @Default(1) int last,
 
     /// The top level of the domain that was entered.
-    required String domain,
+    required String? domain,
 
     /// Grouped data extracted from the API
     List<Group>? groups,

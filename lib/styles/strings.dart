@@ -1,4 +1,8 @@
 const String kRequiredActionText = 'Oops! Try adding a link first.';
+
+const String kUnsupportedSite = 'Oops! This site is currently unsupported.';
+const String kNotInDatabase = 'Oh no! This site doesn\'t seem to be in our database';
+
 const String kCompletedSuccessText = 'Yup! That checks out';
 const String kConfirmationTitle = 'Delete all?';
 const String kConfirmationText =

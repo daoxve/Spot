@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:spot/core/utils/exports.dart';
 
-class DioClient {
+class NetworkService {
   final Dio dio = Dio();
-  final log = getLogger('NetworkStatus');
+  final log = getLogger('NetworkService');
 
   Future getData({
     required String url,

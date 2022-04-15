@@ -3,7 +3,7 @@ import 'package:spot/core/models/site/site.dart';
 import 'package:spot/core/utils/exports.dart';
 
 import 'package:spot/core/models/search/search.dart';
-import 'package:spot/core/services/dio_client.dart';
+import 'package:spot/core/services/network_service.dart';
 
 class HomeViewModel extends BaseViewModel {
   final log = getLogger('HomeViewModel');
@@ -11,10 +11,11 @@ class HomeViewModel extends BaseViewModel {
   Site? searchResult;
   bool isLoading = false;
 
-  final NavigationService _navigationService = locator<NavigationService>();
-  final SnackbarService _snackbarService = locator<SnackbarService>();
-  final TextEditingController textController = TextEditingController();
-  final DioClient dioHelper = DioClient();
+  final _navigationService = locator<NavigationService>();
+  final _snackbarService = locator<SnackbarService>();
+  final _networkService = locator<NetworkService>();
+
+  final textController = TextEditingController();
 
   List<Group> siteGroups = [];
   List<int> liveTechList = [];
@@ -42,25 +43,10 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
 
     try {
-      if (textController.text.isEmpty) {
-        initFocusHelper(context);
+      final _continues = await validateTextActionsAndContinue(context);
+      if (_continues != true) return;
 
-        _snackbarService.showCustomSnackBar(
-          mainButtonTitle: 'Okay',
-          onMainButtonTapped: navigateBack,
-          onTap: navigateBack,
-          duration: const Duration(seconds: 3),
-          message: kRequiredActionText,
-          variant: SnackbarType.failure,
-        );
-
-        isLoading = false;
-        notifyListeners();
-
-        return;
-      }
-
-      final data = await dioHelper.getData(
+      final data = await _networkService.getData(
         url: 'https://api.builtwith.com/free1/api.json?KEY=$key&LOOKUP=${textController.text}',
         context: context,
         snackbarService: _snackbarService,
@@ -68,6 +54,18 @@ class HomeViewModel extends BaseViewModel {
       );
 
       final jsonData = Site.fromJson(data);
+      
+      if (jsonData.domain == null) {
+        _snackbarService.showCustomSnackBar(
+          mainButtonTitle: 'Okay',
+          onMainButtonTapped: navigateBack,
+          onTap: navigateBack,
+          duration: const Duration(seconds: 3),
+          message: kNotInDatabase,
+          variant: SnackbarType.failure,
+        );
+      }
+
       siteGroups.addAll(jsonData.groups?.toList() ?? []);
 
       getLiveTech();
@@ -92,7 +90,7 @@ class HomeViewModel extends BaseViewModel {
       );
       textController.clear();
 
-      log.e('An Exception! $e');
+      log.e('Oops! $e');
 
       isLoading = false;
       notifyListeners();
@@ -105,14 +103,14 @@ class HomeViewModel extends BaseViewModel {
         onMainButtonTapped: navigateBack,
         onTap: navigateBack,
         duration: const Duration(seconds: 3),
-        message: 'No internet connection.',
+        message: 'Oops. Something went wrong.',
         variant: SnackbarType.failure,
       );
-      textController.clear();
 
       log.e('Oops! $e');
     }
 
+    textController.clear();
     isLoading = false;
     notifyListeners();
   }
@@ -184,5 +182,42 @@ class HomeViewModel extends BaseViewModel {
   bool isDarkMode(BuildContext context) {
     final result = getThemeManager(context).isDarkMode;
     return result;
+  }
+
+  Future<bool> validateTextActionsAndContinue(context) async {
+    if (textController.text.isEmpty) {
+      initFocusHelper(context);
+      _snackbarService.showCustomSnackBar(
+        mainButtonTitle: 'Okay',
+        onMainButtonTapped: navigateBack,
+        onTap: navigateBack,
+        duration: const Duration(seconds: 3),
+        message: kRequiredActionText,
+        variant: SnackbarType.failure,
+      );
+
+      isLoading = false;
+      notifyListeners();
+
+      return false;
+    } else if (textController.text.contains('google.com') ||
+        textController.text.contains('microsoft.com')) {
+      initFocusHelper(context);
+      _snackbarService.showCustomSnackBar(
+        mainButtonTitle: 'Got It',
+        onMainButtonTapped: navigateBack,
+        onTap: navigateBack,
+        duration: const Duration(seconds: 3),
+        message: kUnsupportedSite,
+        variant: SnackbarType.failure,
+      );
+
+      isLoading = false;
+      notifyListeners();
+
+      return false;
+    }
+
+    return true;
   }
 }

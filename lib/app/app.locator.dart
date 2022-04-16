@@ -11,6 +11,7 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../core/services/network_service.dart';
+import '../core/services/snackbar_wrapper_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -25,4 +26,5 @@ void setupLocator({String? environment, EnvironmentFilter? environmentFilter}) {
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => BottomSheetService());
   locator.registerLazySingleton(() => NetworkService());
+  locator.registerLazySingleton(() => SnackbarWrapperService());
 }

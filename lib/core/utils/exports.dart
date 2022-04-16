@@ -1,4 +1,5 @@
 // Packages
+export 'package:dio/dio.dart' show Dio, DioError;
 export 'package:flutter/cupertino.dart' hide FormField, RefreshCallback, TextDirection;
 export 'package:flutter/foundation.dart' show kIsWeb;
 export 'package:flutter/material.dart' hide FormField, TextDirection;
@@ -20,11 +21,19 @@ export 'package:spot/app/app.logger.dart';
 export 'package:spot/app/app.router.dart';
 export 'package:spot/core/utils/secrets.dart';
 
+// Services
+export 'package:spot/core/services/snackbar_wrapper_service.dart';
+export 'package:spot/core/services/network_service.dart';
+
 // Enums
 export 'package:spot/core/enums/dialog_status.dart';
 export 'package:spot/core/enums/dialog_type.dart';
 export 'package:spot/core/enums/hero_tags.dart';
 export 'package:spot/core/enums/snackbar_type.dart';
+
+// Models
+export 'package:spot/core/models/site/site.dart';
+export 'package:spot/core/models/search/search.dart';
 
 // Styles
 export 'package:spot/styles/styles.dart';

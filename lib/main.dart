@@ -40,7 +40,6 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         navigatorKey: StackedService.navigatorKey,
         onGenerateRoute: StackedRouter().onGenerateRoute,
-        // home: const HomeView(),
       ),
     );
   }

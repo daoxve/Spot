@@ -1,2 +1,2 @@
 /// The type of snackbar to show
-enum SnackbarType { success, failure }
+enum SnackbarType { success, failure, failureOnDesktop, failureOnTablet }

@@ -1,9 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:spot/core/models/site/site.dart';
 import 'package:spot/core/utils/exports.dart';
-
-import 'package:spot/core/models/search/search.dart';
-import 'package:spot/core/services/network_service.dart';
 
 class HomeViewModel extends BaseViewModel {
   final log = getLogger('HomeViewModel');
@@ -12,8 +7,8 @@ class HomeViewModel extends BaseViewModel {
   bool isLoading = false;
 
   final _navigationService = locator<NavigationService>();
-  final _snackbarService = locator<SnackbarService>();
   final _networkService = locator<NetworkService>();
+  final _snackbarWrapperService = locator<SnackbarWrapperService>();
 
   final textController = TextEditingController();
 
@@ -49,20 +44,15 @@ class HomeViewModel extends BaseViewModel {
       final data = await _networkService.getData(
         url: 'https://api.builtwith.com/free1/api.json?KEY=$key&LOOKUP=${textController.text}',
         context: context,
-        snackbarService: _snackbarService,
-        onSnackbarTap: navigateBack,
+        snackbarService: _snackbarWrapperService,
       );
 
       final jsonData = Site.fromJson(data);
-      
+
       if (jsonData.domain == null) {
-        _snackbarService.showCustomSnackBar(
-          mainButtonTitle: 'Okay',
-          onMainButtonTapped: navigateBack,
-          onTap: navigateBack,
-          duration: const Duration(seconds: 3),
+        _snackbarWrapperService.pushCustomPopup(
+          context,
           message: kNotInDatabase,
-          variant: SnackbarType.failure,
         );
       }
 
@@ -80,14 +70,11 @@ class HomeViewModel extends BaseViewModel {
       isLoading = false;
       notifyListeners();
 
-      _snackbarService.showCustomSnackBar(
-        mainButtonTitle: 'Okay',
-        onMainButtonTapped: navigateBack,
-        onTap: navigateBack,
-        duration: const Duration(seconds: 3),
-        message: 'Oops! You can\'t do that.',
-        variant: SnackbarType.failure,
+      _snackbarWrapperService.pushCustomPopup(
+        context,
+        message: kCantDoThat,
       );
+
       textController.clear();
 
       log.e('Oops! $e');
@@ -98,13 +85,9 @@ class HomeViewModel extends BaseViewModel {
       isLoading = false;
       notifyListeners();
 
-      _snackbarService.showCustomSnackBar(
-        mainButtonTitle: 'Okay',
-        onMainButtonTapped: navigateBack,
-        onTap: navigateBack,
-        duration: const Duration(seconds: 3),
-        message: 'Oops. Something went wrong.',
-        variant: SnackbarType.failure,
+      _snackbarWrapperService.pushCustomPopup(
+        context,
+        message: kSomethingWentWrong,
       );
 
       log.e('Oops! $e');
@@ -187,13 +170,9 @@ class HomeViewModel extends BaseViewModel {
   Future<bool> validateTextActionsAndContinue(context) async {
     if (textController.text.isEmpty) {
       initFocusHelper(context);
-      _snackbarService.showCustomSnackBar(
-        mainButtonTitle: 'Okay',
-        onMainButtonTapped: navigateBack,
-        onTap: navigateBack,
-        duration: const Duration(seconds: 3),
+      _snackbarWrapperService.pushCustomPopup(
+        context,
         message: kRequiredActionText,
-        variant: SnackbarType.failure,
       );
 
       isLoading = false;
@@ -203,13 +182,10 @@ class HomeViewModel extends BaseViewModel {
     } else if (textController.text.contains('google.com') ||
         textController.text.contains('microsoft.com')) {
       initFocusHelper(context);
-      _snackbarService.showCustomSnackBar(
-        mainButtonTitle: 'Got It',
-        onMainButtonTapped: navigateBack,
-        onTap: navigateBack,
-        duration: const Duration(seconds: 3),
+      _snackbarWrapperService.pushCustomPopup(
+        context,
+        buttonText: 'Got It',
         message: kUnsupportedSite,
-        variant: SnackbarType.failure,
       );
 
       isLoading = false;

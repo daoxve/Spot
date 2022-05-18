@@ -639,6 +639,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  showcaseview:
+    dependency: "direct main"
+    description:
+      name: showcaseview
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.5"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -696,12 +703,10 @@ packages:
   stacked_services:
     dependency: "direct main"
     description:
-      path: "packages/stacked_services"
-      ref: "6c6c7da"
-      resolved-ref: "6c6c7da57dd6c7f95b4196b703f3aef08b6170cc"
-      url: "https://github.com/thecokerdavid/stacked.git"
-    source: git
-    version: "0.8.16"
+      name: stacked_services
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.8.22+1"
   stacked_themes:
     dependency: "direct main"
     description:

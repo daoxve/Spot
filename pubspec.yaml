@@ -21,13 +21,10 @@ dependencies:
   responsive_builder: ^0.4.2
   rive: ^0.8.4
   shimmer: ^2.0.0
+  showcaseview: ^1.1.5
   stacked: ^2.2.8
   stacked_hooks: ^0.2.1+1
-  stacked_services:
-    git:
-      url: https://github.com/thecokerdavid/stacked.git
-      path: packages/stacked_services/
-      ref: 6c6c7da
+  stacked_services: 0.8.22+1
   stacked_themes: ^0.3.8+1
   url_launcher: ^6.0.20
 

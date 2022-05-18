@@ -1,7 +1,6 @@
 import 'package:spot/core/utils/exports.dart';
 
 /// This function initializes all snackbars to be used later in the app.
-/// TODO: Setup a custom snackbar for desktop.
 void setupSnackbarUI() {
   final service = locator<SnackbarService>();
 

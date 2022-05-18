@@ -6,8 +6,8 @@ ThemeData lightTheme = ThemeData(
   colorScheme: ColorScheme.fromSwatch().copyWith(
     secondary: kcBlack12,
     onSecondary: kcBlack,
-    primaryVariant: kcLightVar,
-    secondaryVariant: kcLightVarAccent,
+    primaryContainer: kcLightVar,
+    secondaryContainer: kcLightVarAccent,
     background: kcWhiteBackground,
     brightness: Brightness.light,
   ),
@@ -29,7 +29,6 @@ ThemeData lightTheme = ThemeData(
   hintColor: Colors.black,
   highlightColor: Colors.transparent,
   splashColor: Colors.transparent,
-
 );
 
 //* Dark
@@ -38,8 +37,8 @@ ThemeData darkTheme = ThemeData(
   colorScheme: ColorScheme.fromSwatch().copyWith(
     secondary: kcDarkAccent,
     onSecondary: kcWhite,
-    primaryVariant: kcDarkVar,
-    secondaryVariant: kcDarkVarAccent,
+    primaryContainer: kcDarkVar,
+    secondaryContainer: kcDarkVarAccent,
     background: kcDarkAccent,
     brightness: Brightness.dark,
   ),

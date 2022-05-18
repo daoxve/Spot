@@ -1,8 +1,6 @@
 import 'core/utils/exports.dart';
 import 'styles/themes.dart' as _themes;
 
-import 'package:spot/core/models/search/search.dart';
-
 import 'ui/widgets/setup_dialog_ui.dart';
 import 'ui/widgets/setup_snackbar_ui.dart';
 

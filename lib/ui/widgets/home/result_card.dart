@@ -22,7 +22,8 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
       (group) => group.name.startsWith('framework'),
     );
 
-    final sslIndex = apiGroup?.indexWhere((group) => group.name.startsWith('ssl'));
+    final sslIndex =
+        apiGroup?.indexWhere((group) => group.name.startsWith('ssl'));
 
     // Finds the group with the largest number of live technologies
     final findLargestGroup = apiGroup?.reduce(
@@ -31,13 +32,14 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
 
     final placeholderEpoch = DateTime.now().millisecondsSinceEpoch;
 
-    final firstDateRaw =
-        DateTime.fromMillisecondsSinceEpoch((apiData?.first ?? placeholderEpoch) * 1000);
+    final firstDateRaw = DateTime.fromMillisecondsSinceEpoch(
+        (apiData?.first ?? placeholderEpoch) * 1000);
 
-    final lastDateRaw =
-        DateTime.fromMillisecondsSinceEpoch((apiData?.last ?? placeholderEpoch) * 1000);
+    final lastDateRaw = DateTime.fromMillisecondsSinceEpoch(
+        (apiData?.last ?? placeholderEpoch) * 1000);
 
-    final epochTimeNowRaw = DateTime.fromMillisecondsSinceEpoch(placeholderEpoch * 1000);
+    final epochTimeNowRaw =
+        DateTime.fromMillisecondsSinceEpoch(placeholderEpoch * 1000);
 
     final DateFormat dateFormat = DateFormat('yMMMd');
 
@@ -45,11 +47,11 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
     final lastDate = dateFormat.format(lastDateRaw);
     final epochTimeNow = dateFormat.format(epochTimeNowRaw);
 
-    final latestDate =
-        TimeHelper.formatTimeInEpoch((findLargestGroup?.latest ?? placeholderEpoch) * 1000);
+    final latestDate = TimeHelper.formatTimeInEpoch(
+        (findLargestGroup?.latest ?? placeholderEpoch) * 1000);
 
-    final oldestDate =
-        TimeHelper.formatTimeInEpoch((findLargestGroup?.oldest ?? placeholderEpoch) * 1000);
+    final oldestDate = TimeHelper.formatTimeInEpoch(
+        (findLargestGroup?.oldest ?? placeholderEpoch) * 1000);
 
     List<String> tileTitle = [
       'First Time of Detection',
@@ -87,8 +89,8 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
             height: tileContent.length * 110.0,
             // maxWidth: 720.0,
             child: Shimmer.fromColors(
-              baseColor: theme.colorScheme.primaryVariant,
-              highlightColor: theme.colorScheme.secondaryVariant,
+              baseColor: theme.colorScheme.primaryContainer,
+              highlightColor: theme.colorScheme.secondaryContainer,
               enabled: viewModel.isLoading,
               child: Card(
                 shape: RoundedRectangleBorder(

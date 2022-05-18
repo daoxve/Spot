@@ -5,6 +5,11 @@ import 'package:stacked_hooks/stacked_hooks.dart';
 
 import 'package:spot/ui/views/home/home_viewmodel.dart';
 
+extension StringCasing on String {
+  String toCapitalizedFirst() => length > 0 ?'${this[0].toUpperCase()}${substring(1).toLowerCase()}':'';
+  String toTitleCase() => replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.toCapitalizedFirst()).join(' ');
+}
+
 class ResultCard extends HookViewModelWidget<HomeViewModel> {
   const ResultCard({
     Key? key,
@@ -73,7 +78,7 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
       oldestDate == 'Just now' ? 'unknown' : oldestDate,
       viewModel.totalLiveTech.toString(),
       viewModel.totalDeadTech.toString(),
-      findLargestGroup?.name.capitalizeFirst ?? 'unknown',
+      findLargestGroup?.name.toCapitalizedFirst() ?? 'unknown',
       findLargestGroup?.live.toString() ?? 'unknown',
       apiGroup?[frameworkIndex ?? -1].live.toString() ?? 'unknown',
       apiGroup?[sslIndex ?? -1].live == null

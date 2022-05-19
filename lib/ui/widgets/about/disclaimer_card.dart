@@ -39,10 +39,10 @@ class DisclaimerCard extends StatelessWidget {
           Gap.smallH,
           GestureDetector(
             onTap: () async {
-              const url = 'https://cokerdavid.com/Spot/DISCLAIMER.html';
+              final url = Uri.parse('https://cokerdavid.com/Spot/DISCLAIMER.html');
 
-              if (await canLaunch(url)) {
-                await launch(url, forceWebView: true, enableJavaScript: true);
+              if (await canLaunchUrl(url)) {
+                await launchUrl(url, webOnlyWindowName: 'Spot');
               } else {
                 throw 'Could not launch $url';
               }

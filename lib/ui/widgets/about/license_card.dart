@@ -46,10 +46,10 @@ class LicenseCard extends StatelessWidget {
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
               onTap: () async {
-                const url = 'https://github.com/thecokerdavid/Spot/blob/master/LICENSE';
+                final url = Uri.parse('https://github.com/thecokerdavid/Spot/blob/master/LICENSE');
 
-                if (await canLaunch(url)) {
-                  await launch(url, forceWebView: true, enableJavaScript: true);
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
                 } else {
                   throw 'Could not launch $url';
                 }

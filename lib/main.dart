@@ -25,7 +25,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ThemeBuilder(
-      statusBarColorBuilder: (_) => Colors.transparent,
+      statusBarColorBuilder: (_) => Colors.white,
       navigationBarColorBuilder: (theme) => theme!.colorScheme.background,
       defaultThemeMode: ThemeMode.dark,
       darkTheme: _themes.darkTheme,

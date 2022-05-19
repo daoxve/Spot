@@ -1,9 +1,9 @@
 name: spot
-description: Lookup details for any website.
+description: A new Flutter project.
 
-publish_to: "none"
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.1.0
+version: 1.1.0+1
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
@@ -21,12 +21,14 @@ dependencies:
   responsive_builder: ^0.4.2
   rive: ^0.8.4
   shimmer: ^2.0.0
-  showcaseview: ^1.1.5
   stacked: ^2.2.8
   stacked_hooks: ^0.2.1+1
   stacked_services: 0.8.22+1
   stacked_themes: ^0.3.8+1
   url_launcher: ^6.0.20
+
+dependency_overrides:
+  get: 4.6.1
 
 dev_dependencies:
   build_runner: ^2.1.7

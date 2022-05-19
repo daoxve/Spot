@@ -1,6 +1,0 @@
-package com.cokerdavid.spot
-
-import io.flutter.embedding.android.FlutterActivity
-
-class MainActivity: FlutterActivity() {
-}

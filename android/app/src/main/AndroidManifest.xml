@@ -14,7 +14,7 @@
   </intent>
 </queries>
    <application
-        android:label="Spot"
+        android:label="spot"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

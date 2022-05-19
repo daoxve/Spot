@@ -1,0 +1,1 @@
+enum HeroTags { about, recents }

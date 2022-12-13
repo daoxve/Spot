@@ -78830,7 +78830,7 @@ return A.dV(s,A.fd(A.a([n,B.aH,A.jq(s,A.m5(A.dV(s,A.tT(A.bZ("Read Our Official D
 A.a2O.prototype={
 $0(){var s=0,r=A.S(t.H),q
 var $async$$0=A.T(function(a,b){if(a===1)return A.P(b,r)
-while(true)switch(s){case 0:q=A.l4("https://cokerdavid.com/Spot/DISCLAIMER.html",0,null)
+while(true)switch(s){case 0:q=A.l4("https://daoxve.github.io/Spot/DISCLAIMER.html",0,null)
 s=5
 return A.U(A.aro(q),$async$$0)
 case 5:s=b?2:4
@@ -78853,7 +78853,7 @@ return A.dV(s,A.fd(A.a([n,B.aH,m,B.aH,A.m5(A.jq(s,A.dV(s,A.tT(A.bZ("See more",s,
 A.a8P.prototype={
 $0(){var s=0,r=A.S(t.H),q
 var $async$$0=A.T(function(a,b){if(a===1)return A.P(b,r)
-while(true)switch(s){case 0:q=A.l4("https://github.com/thecokerdavid/Spot/blob/master/LICENSE",0,null)
+while(true)switch(s){case 0:q=A.l4("https://github.com/daoxve/Spot/blob/master/LICENSE",0,null)
 s=5
 return A.U(A.aro(q),$async$$0)
 case 5:s=b?2:4

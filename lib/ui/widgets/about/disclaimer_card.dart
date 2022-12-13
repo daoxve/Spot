@@ -41,7 +41,7 @@ class DisclaimerCard extends StatelessWidget {
           Gap.smallH,
           GestureDetector(
             onTap: () async {
-              final url = Uri.parse('https://cokerdavid.com/Spot/DISCLAIMER.html');
+              final url = Uri.parse('https://daoxve.github.io/Spot/DISCLAIMER.html');
 
               if (await canLaunchUrl(url)) {
                 await launchUrl(url, webOnlyWindowName: 'Spot');

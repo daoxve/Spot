@@ -48,7 +48,7 @@ class LicenseCard extends StatelessWidget {
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
               onTap: () async {
-                final url = Uri.parse('https://github.com/thecokerdavid/Spot/blob/master/LICENSE');
+                final url = Uri.parse('https://github.com/daoxve/Spot/blob/master/LICENSE');
 
                 if (await canLaunchUrl(url)) {
                   await launchUrl(url);

@@ -30,7 +30,7 @@ class DetailTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                title + ':',
+                '$title:',
                 style: textTheme.subtitle2!.copyWith(
                   fontSize: 12.0,
                   letterSpacing: 0.4,

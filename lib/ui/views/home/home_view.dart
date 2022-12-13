@@ -10,7 +10,7 @@ import 'package:spot/ui/widgets/home/home_textfield.dart';
 import 'home_viewmodel.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,7 @@ class HomeView extends StatelessWidget {
       viewModelBuilder: () => HomeViewModel(),
       builder: (context, model, child) {
         return ScreenTypeLayout(
+          breakpoints: const ScreenBreakpoints(desktop: 650, tablet: 450, watch: 100),
           mobile: HomeViewMobile(model: model),
           desktop: HomeViewDesktop(model: model),
         );
@@ -95,8 +96,8 @@ class HomeViewDesktop extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           heroTag: HeroTags.recents,
           onPressed: () => model.navigateTo(Routes.recentsView),
-          child: const Icon(CupertinoIcons.square_list),
           backgroundColor: theme.colorScheme.background,
+          child: const Icon(CupertinoIcons.square_list),
         ),
       ),
     );
@@ -127,49 +128,51 @@ class HomeViewMobile extends StatelessWidget {
           popupItemBuilder: (context) => model.popupItems,
           onPopupSelected: model.popupValueActions,
         ),
-        body: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const IntroText(),
-              Gap.mediumH,
-              HomeTextField(
-                theme: theme,
-                textTheme: textTheme,
-                textController: model.textController,
-                onFieldSubmitted: (value) => model.getData(context),
-                suffixIconFunction: () => model.getData(context),
-              ),
-              Gap.largeH,
-              const Text(
-                'Results',
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w500,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const IntroText(),
+                Gap.mediumH,
+                HomeTextField(
+                  theme: theme,
+                  textTheme: textTheme,
+                  textController: model.textController,
+                  onFieldSubmitted: (value) => model.getData(context),
+                  suffixIconFunction: () => model.getData(context),
                 ),
-              ),
-              Gap.mediumH,
-              ResultCard(theme: theme),
-              Gap.mediumH,
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Text(
-                  '© David Coker.  2022.',
-                  style: textTheme.headline6,
+                Gap.largeH,
+                const Text(
+                  'Results',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
-              Gap.mediumH,
-            ],
+                Gap.mediumH,
+                ResultCard(theme: theme),
+                Gap.mediumH,
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Text(
+                    '© David Coker.  2022.',
+                    style: textTheme.headline6,
+                  ),
+                ),
+                Gap.mediumH,
+              ],
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
           heroTag: HeroTags.recents,
           onPressed: () => model.navigateTo(Routes.recentsView),
-          child: const Icon(CupertinoIcons.square_list),
           backgroundColor: theme.colorScheme.background,
+          child: const Icon(CupertinoIcons.square_list),
         ),
       ),
     );

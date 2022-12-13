@@ -16,8 +16,9 @@ class AboutView extends StatelessWidget {
       viewModelBuilder: () => AboutViewModel(),
       builder: (context, model, child) {
         return ScreenTypeLayout(
+          // breakpoints: const ScreenBreakpoints(desktop: 200, tablet: 150, watch: 100),
           mobile: AboutViewMobile(model: model),
-          tablet: AboutViewMobile(model: model),
+          tablet: AboutViewDesktop(model: model),
           desktop: AboutViewDesktop(model: model),
         );
       },
@@ -55,37 +56,39 @@ class AboutViewDesktop extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const AboutTheApp(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                DisclaimerCard(
-                  theme: theme,
-                  textTheme: textTheme,
-                ),
-                LicenseCard(
-                  theme: theme,
-                  textTheme: textTheme,
-                ),
-              ],
-            ),
-            VersionCard(
-              theme: theme,
-              textTheme: textTheme,
-            ),
-            Gap.mediumH,
-            Text(
-              '© David Coker.  2022.',
-              style: textTheme.headline6,
-            ),
-            Gap.smallH,
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const AboutTheApp(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  DisclaimerCard(
+                    theme: theme,
+                    textTheme: textTheme,
+                  ),
+                  LicenseCard(
+                    theme: theme,
+                    textTheme: textTheme,
+                  ),
+                ],
+              ),
+              VersionCard(
+                theme: theme,
+                textTheme: textTheme,
+              ),
+              Gap.mediumH,
+              Text(
+                '© David Coker.  2022.',
+                style: textTheme.headline6,
+              ),
+              Gap.smallH,
+            ],
+          ),
         ),
       ),
     );
@@ -122,32 +125,34 @@ class AboutViewMobile extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            const AboutTheApp(),
-            Gap.mediumH,
-            DisclaimerCard(
-              theme: theme,
-              textTheme: textTheme,
-            ),
-            LicenseCard(
-              theme: theme,
-              textTheme: textTheme,
-            ),
-            VersionCard(
-              theme: theme,
-              textTheme: textTheme,
-            ),
-            Gap.mediumH,
-            Text(
-              '© David Coker.  2022.',
-              style: textTheme.headline6,
-            ),
-            Gap.smallH,
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              const AboutTheApp(),
+              Gap.mediumH,
+              DisclaimerCard(
+                theme: theme,
+                textTheme: textTheme,
+              ),
+              LicenseCard(
+                theme: theme,
+                textTheme: textTheme,
+              ),
+              VersionCard(
+                theme: theme,
+                textTheme: textTheme,
+              ),
+              Gap.mediumH,
+              Text(
+                '© David Coker.  2022.',
+                style: textTheme.headline6,
+              ),
+              Gap.smallH,
+            ],
+          ),
         ),
       ),
     );

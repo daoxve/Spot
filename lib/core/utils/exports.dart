@@ -5,7 +5,7 @@ export 'package:flutter/foundation.dart' show kIsWeb;
 export 'package:flutter/material.dart' hide FormField, TextDirection;
 export 'package:flutter/services.dart';
 export 'package:hive_flutter/hive_flutter.dart';
-export 'package:intl/intl.dart';
+export 'package:intl/intl.dart' hide TextDirection;
 export 'package:shimmer/shimmer.dart';
 export 'package:responsive_builder/responsive_builder.dart' hide WidgetBuilder;
 export 'package:rive/rive.dart' hide LinearGradient, RadialGradient;

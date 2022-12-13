@@ -1,5 +1,5 @@
 import 'core/utils/exports.dart';
-import 'styles/themes.dart' as _themes;
+import 'styles/themes.dart' as themes;
 
 import 'ui/widgets/setup_dialog_ui.dart';
 import 'ui/widgets/setup_snackbar_ui.dart';
@@ -28,8 +28,8 @@ class App extends StatelessWidget {
       statusBarColorBuilder: (_) => Colors.transparent,
       navigationBarColorBuilder: (theme) => theme!.colorScheme.background,
       defaultThemeMode: ThemeMode.dark,
-      darkTheme: _themes.darkTheme,
-      lightTheme: _themes.lightTheme,
+      darkTheme: themes.darkTheme,
+      lightTheme: themes.lightTheme,
       builder: (context, regularTheme, darkTheme, themeMode) => MaterialApp(
         title: 'Spot',
         theme: regularTheme,

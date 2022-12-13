@@ -19,6 +19,7 @@ class HomeTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autocorrect: false,
       controller: textController,
       onSaved: (value) {},
       keyboardAppearance: theme.brightness,

@@ -12,5 +12,5 @@ const String kConfirmationText =
     'Are you sure you want to delete data for all your previous searches? This cannot be undone.';
 
 const String kAboutTheApp = '''
-A user-friendly + convenient, fast and performant way to lookup details for almost any website - it's not sorcery. It's Spot. :)
+A user-friendly + convenient + fast + powerful way to lookup details for any website - no sorcery here. It's just Spot. :)
 ''';

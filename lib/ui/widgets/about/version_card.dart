@@ -16,11 +16,13 @@ class VersionCard extends StatelessWidget {
       height: getValueForScreenType<double>(
         context: context,
         mobile: 140.0,
+        tablet: 180.0,
         desktop: 250.0,
       ),
       width: getValueForScreenType<double>(
         context: context,
         mobile: double.maxFinite,
+        tablet: 350.0,
         desktop: 450.0,
       ),
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),

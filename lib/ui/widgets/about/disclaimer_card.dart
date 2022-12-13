@@ -16,11 +16,13 @@ class DisclaimerCard extends StatelessWidget {
       height: getValueForScreenType<double>(
         context: context,
         mobile: 130.0,
+        tablet: 170.0,
         desktop: 250.0,
       ),
       width: getValueForScreenType<double>(
         context: context,
         mobile: double.maxFinite,
+        tablet: 350.0,
         desktop: 450.0,
       ),
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
@@ -52,7 +54,7 @@ class DisclaimerCard extends StatelessWidget {
               child: Container(
                 width: getValueForScreenType<double>(
                   context: context,
-                  mobile: 200.0,
+                  mobile: 220.0,
                   desktop: 250.0,
                 ),
                 height: 35.0,
@@ -66,6 +68,7 @@ class DisclaimerCard extends StatelessWidget {
                     style: textTheme.headline6!.copyWith(
                       color: Colors.black,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),

@@ -15,12 +15,13 @@ class AboutTheApp extends StatelessWidget {
       height: getValueForScreenType<double>(
         context: context,
         mobile: 250.0,
-        tablet: 280.0,
+        tablet: 270.0,
         desktop: 280.0,
       ),
       width: getValueForScreenType<double>(
         context: context,
         mobile: double.maxFinite,
+        tablet: 350,
         desktop: 500.0,
       ),
       child: Card(
@@ -46,7 +47,12 @@ class AboutTheApp extends StatelessWidget {
                     kAboutTheApp,
                     style: TextStyle(
                       color: theme.iconTheme.color!.withOpacity(0.8),
-                      fontSize: 13.5,
+                      fontSize: getValueForScreenType(
+                        context: context,
+                        mobile: 13.5,
+                        tablet: 13,
+                        desktop: 14,
+                      ),
                       fontWeight: FontWeight.w500,
                       letterSpacing: 0.4,
                       wordSpacing: 1.15,

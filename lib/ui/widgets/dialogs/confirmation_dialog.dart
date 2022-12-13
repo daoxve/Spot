@@ -81,8 +81,9 @@ class _ConfirmationDialogContent extends StatelessWidget {
                 children: [
                   if (request.secondaryButtonTitle != null) ...{
                     TextButton(
-                      onPressed: () => completer(
-                        DialogResponse(confirmed: false),
+                      onPressed: () => completer(DialogResponse()),
+                      style: TextButton.styleFrom(
+                        splashFactory: NoSplash.splashFactory,
                       ),
                       child: Text(
                         request.secondaryButtonTitle!,
@@ -90,23 +91,20 @@ class _ConfirmationDialogContent extends StatelessWidget {
                           color: theme.iconTheme.color!.withOpacity(0.8),
                         ),
                       ),
-                      style: TextButton.styleFrom(
-                        splashFactory: NoSplash.splashFactory,
-                      ),
                     ),
                   },
                   TextButton(
                     onPressed: () => completer(
                       DialogResponse(confirmed: true),
                     ),
+                    style: TextButton.styleFrom(
+                      splashFactory: NoSplash.splashFactory,
+                    ),
                     child: Text(
                       request.mainButtonTitle!,
                       style: textTheme.subtitle1!.copyWith(
                         color: kcError,
                       ),
-                    ),
-                    style: TextButton.styleFrom(
-                      splashFactory: NoSplash.splashFactory,
                     ),
                   ),
                 ],

@@ -6,8 +6,12 @@ import 'package:stacked_hooks/stacked_hooks.dart';
 import 'package:spot/ui/views/home/home_viewmodel.dart';
 
 extension StringCasing on String {
-  String toCapitalizedFirst() => length > 0 ?'${this[0].toUpperCase()}${substring(1).toLowerCase()}':'';
-  String toTitleCase() => replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.toCapitalizedFirst()).join(' ');
+  String toCapitalizedFirst() =>
+      length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
+  String toTitleCase() => replaceAll(RegExp(' +'), ' ')
+      .split(' ')
+      .map((str) => str.toCapitalizedFirst())
+      .join(' ');
 }
 
 class ResultCard extends HookViewModelWidget<HomeViewModel> {
@@ -27,8 +31,9 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
       (group) => group.name.startsWith('framework'),
     );
 
-    final sslIndex =
-        apiGroup?.indexWhere((group) => group.name.startsWith('ssl'));
+    int? sslIndex = apiGroup?.indexWhere((group) => group.name.startsWith('ssl'));
+
+    if (sslIndex == -1) sslIndex = 0;
 
     // Finds the group with the largest number of live technologies
     final findLargestGroup = apiGroup?.reduce(
@@ -37,14 +42,13 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
 
     final placeholderEpoch = DateTime.now().millisecondsSinceEpoch;
 
-    final firstDateRaw = DateTime.fromMillisecondsSinceEpoch(
-        (apiData?.first ?? placeholderEpoch) * 1000);
+    final firstDateRaw =
+        DateTime.fromMillisecondsSinceEpoch((apiData?.first ?? placeholderEpoch) * 1000);
 
-    final lastDateRaw = DateTime.fromMillisecondsSinceEpoch(
-        (apiData?.last ?? placeholderEpoch) * 1000);
+    final lastDateRaw =
+        DateTime.fromMillisecondsSinceEpoch((apiData?.last ?? placeholderEpoch) * 1000);
 
-    final epochTimeNowRaw =
-        DateTime.fromMillisecondsSinceEpoch(placeholderEpoch * 1000);
+    final epochTimeNowRaw = DateTime.fromMillisecondsSinceEpoch(placeholderEpoch * 1000);
 
     final DateFormat dateFormat = DateFormat('yMMMd');
 
@@ -52,11 +56,11 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
     final lastDate = dateFormat.format(lastDateRaw);
     final epochTimeNow = dateFormat.format(epochTimeNowRaw);
 
-    final latestDate = TimeHelper.formatTimeInEpoch(
-        (findLargestGroup?.latest ?? placeholderEpoch) * 1000);
+    final latestDate =
+        TimeHelper.formatTimeInEpoch((findLargestGroup?.latest ?? placeholderEpoch) * 1000);
 
-    final oldestDate = TimeHelper.formatTimeInEpoch(
-        (findLargestGroup?.oldest ?? placeholderEpoch) * 1000);
+    final oldestDate =
+        TimeHelper.formatTimeInEpoch((findLargestGroup?.oldest ?? placeholderEpoch) * 1000);
 
     List<String> tileTitle = [
       'First Time of Detection',
@@ -81,9 +85,9 @@ class ResultCard extends HookViewModelWidget<HomeViewModel> {
       findLargestGroup?.name.toCapitalizedFirst() ?? 'unknown',
       findLargestGroup?.live.toString() ?? 'unknown',
       apiGroup?[frameworkIndex ?? -1].live.toString() ?? 'unknown',
-      apiGroup?[sslIndex ?? -1].live == null
+      apiGroup?[sslIndex ?? 0].live == null
           ? 'unknown'
-          : apiGroup?[sslIndex ?? -1].live == 0
+          : apiGroup?[sslIndex ?? 0].live == 0
               ? 'No'
               : 'Yes.',
     ];

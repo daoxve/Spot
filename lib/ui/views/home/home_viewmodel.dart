@@ -38,8 +38,8 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
 
     try {
-      final _continues = await validateTextActionsAndContinue(context);
-      if (_continues != true) return;
+      final continues = await validateTextActionsAndContinue(context);
+      if (continues != true) return;
 
       final data = await _networkService.getData(
         url: 'https://api.builtwith.com/free1/api.json?KEY=$key&LOOKUP=${textController.text}',
@@ -154,18 +154,8 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
-  void toggleTheme(BuildContext context) {
-    if (getThemeManager(context).selectedThemeMode == ThemeMode.dark) {
-      getThemeManager(context).setThemeMode(ThemeMode.light);
-    } else {
-      getThemeManager(context).setThemeMode(ThemeMode.dark);
-    }
-  }
-
-  bool isDarkMode(BuildContext context) {
-    final result = getThemeManager(context).isDarkMode;
-    return result;
-  }
+  void toggleTheme(BuildContext context) => getThemeManager(context).toggleDarkLightTheme();
+  bool isDarkMode(BuildContext context) => getThemeManager(context).isDarkMode;
 
   Future<bool> validateTextActionsAndContinue(context) async {
     if (textController.text.isEmpty) {

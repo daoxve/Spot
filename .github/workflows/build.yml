@@ -70,6 +70,6 @@ jobs:
        run: |
          if [ $(git status --porcelain=v1 2>/dev/null | wc -l) != "0" ] ; then
            git add -f build
-           git commit -m "chore: deploy latest build 🚀"
+           git commit -m "Deploy latest build 🚀"
            git push --force https://github.com/${GITHUB_REPOSITORY}.git HEAD:build
          fi
